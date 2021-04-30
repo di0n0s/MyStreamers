@@ -49,7 +49,7 @@ object Libraries {
     const val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}"
 
     //AndroidX Ktx
-    const val ktxCore = "androidx.core:core-ktx:${Versions.coreKtx}"
+    const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
 
     //Material
     const val material = "com.google.android.material:material:${Versions.material}"
