@@ -1,14 +1,16 @@
-apply plugin: (Pluggins.androidApplication)
-apply plugin: (Pluggins.kotlinAndroid)
+apply plugin: (Plugins.androidApplication)
+apply plugin: (Plugins.kotlinAndroid)
+apply plugin: (Plugins.kotlinKapt)
+apply plugin: (Plugins.hilt)
 
 android {
-    compileSdkVersion (AndroidSdk.compile)
-    buildToolsVersion (AndroidSdk.buildToolsVersion)
+    compileSdkVersion(AndroidSdk.compile)
+    buildToolsVersion(AndroidSdk.buildToolsVersion)
 
     defaultConfig {
         applicationId "com.dionos.mystreamers"
-        minSdkVersion (AndroidSdk.min)
-        targetSdkVersion (AndroidSdk.target)
+        minSdkVersion(AndroidSdk.min)
+        targetSdkVersion(AndroidSdk.target)
         versionCode 1
         versionName "1.0"
 
@@ -25,17 +27,21 @@ android {
 
 dependencies {
     //Kotlin
-    implementation (Libraries.kotlinStdLib)
+    implementation(Libraries.kotlinStdLib)
 
     //AndroidX ktx
-    implementation (Libraries.coreKtx)
-    implementation (Libraries.fragmentKtx)
+    implementation(Libraries.coreKtx)
+    implementation(Libraries.fragmentKtx)
 
     //AndroidX
-    implementation (Libraries.appCompat)
-    implementation (Libraries.constraintLayout)
+    implementation(Libraries.appCompat)
+    implementation(Libraries.constraintLayout)
 
     //Android
-    implementation (Libraries.material)
+    implementation(Libraries.material)
+
+    //Hilt
+    implementation(Libraries.hilt)
+    kapt(Libraries.hiltCompiler)
 
 }
