@@ -1,9 +1,9 @@
-const val kotlinVersion = "1.4.32"
+const val kotlinVersion = "1.6.0"
 
 
 object Build {
     object Versions {
-        const val buildToolsVersion = "4.1.3"
+        const val buildToolsVersion = "7.0.3"
         const val googleServicesVersion = "4.2.0"
     }
 
