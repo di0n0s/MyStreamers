@@ -16,6 +16,7 @@ object Build {
 
 object Plugins {
     const val androidApplication = "com.android.application"
+    const val androidLibrary = "com.android.library"
     const val kotlinAndroid = "kotlin-android"
     const val kotlinKapt = "kotlin-kapt"
     const val hilt = "dagger.hilt.android.plugin"
@@ -26,7 +27,7 @@ object AndroidSdk {
     const val min = 21
     const val compile = 30
     const val target = compile
-    const val buildToolsVersion = "30.0.0"
+    const val buildToolsVersion = "30.0.2"
 }
 
 object Libraries {
