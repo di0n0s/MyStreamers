@@ -48,4 +48,9 @@ dependencies {
     implementation(Libraries.hilt)
     kapt(Libraries.hiltCompiler)
 
+    //Navigation
+    implementation(Libraries.navigationFragment)
+    implementation(Libraries.navigationUi)
+    androidTestImplementation(Libraries.navigationTesting)
+
 }

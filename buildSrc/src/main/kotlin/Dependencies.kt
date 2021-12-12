@@ -3,7 +3,7 @@ const val kotlinVersion = "1.6.0"
 
 object Build {
     object Versions {
-        const val buildToolsVersion = "7.0.3"
+        const val buildToolsVersion = "7.0.4"
         const val googleServicesVersion = "4.2.0"
         const val hiltVersion = "2.28-alpha"
     }
@@ -25,7 +25,7 @@ object Plugins {
 
 object AndroidSdk {
     const val min = 21
-    const val compile = 30
+    private const val compile = 30
     const val target = compile
     const val buildToolsVersion = "30.0.2"
 }
@@ -42,6 +42,9 @@ object Libraries {
 
         //Material
         const val material = "1.3.0"
+
+        //Navigation
+        const val navigation = "2.3.5"
     }
 
     //Kotlin
@@ -62,4 +65,10 @@ object Libraries {
     //Hilt
     const val hilt = "com.google.dagger:hilt-android:${Build.Versions.hiltVersion}"
     const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Build.Versions.hiltVersion}"
+
+    // Navigation
+    const val navigationFragment =
+        "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
+    const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
+    const val navigationTesting = "androidx.navigation:navigation-testing:${Versions.navigation}"
 }
