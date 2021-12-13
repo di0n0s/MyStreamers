@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewStub
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -30,8 +29,6 @@ class SignInFragment : Fragment() {
     private var _binding: FragmentSignInBinding? = null
     private val binding get() = _binding
 
-    private var viewStub: ViewStub? = null
-
     //Variables
     private var state: String = UUID.randomUUID().toString()
 
@@ -52,7 +49,6 @@ class SignInFragment : Fragment() {
 
     private fun onInitView(inflater: LayoutInflater, container: ViewGroup?) {
         _binding = FragmentSignInBinding.inflate(inflater, container, false)
-        viewStub = binding?.viewStub
     }
 
     @SuppressLint("SetJavaScriptEnabled")
