@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.dionos.user.SignInFragment"
+        android:name="com.dionos.user.presentation.view.SignInFragment"
         android:label="SignInFragment" />
 </navigation>

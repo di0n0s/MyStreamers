@@ -26,6 +26,7 @@ android {
 }
 
 dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
     //Visibility
     implementation project(':core')
     implementation project(':user')
@@ -35,22 +36,36 @@ dependencies {
 
     //AndroidX ktx
     implementation(Libraries.coreKtx)
-    implementation(Libraries.fragmentKtx)
+    implementation(Libraries.fragmentKtx) {
+        exclude module: 'lifecycle-viewmodel-ktx'
+        exclude module: 'lifecycle-viewmodel'
+    }
 
     //AndroidX
-    implementation(Libraries.appCompat)
+    implementation(Libraries.appCompat) {
+        exclude module: 'lifecycle-viewmodel'
+    }
+
     implementation(Libraries.constraintLayout)
 
     //Android
-    implementation(Libraries.material)
+    implementation(Libraries.material) {
+        exclude group: 'androidx.transition', module: 'transition'
+    }
 
     //Hilt
     implementation(Libraries.hilt)
+    kapt(Libraries.hiltAndroidCompiler)
+
+    //Hilt with ViewModel
+    implementation(Libraries.hiltLifecycleViewModel)
     kapt(Libraries.hiltCompiler)
 
     //Navigation
     implementation(Libraries.navigationFragment)
     implementation(Libraries.navigationUi)
-    androidTestImplementation(Libraries.navigationTesting)
+    androidTestImplementation(Libraries.navigationTesting) {
+        exclude module: 'lifecycle-viewmodel'
+    }
 
 }

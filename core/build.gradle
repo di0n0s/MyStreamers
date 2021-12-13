@@ -23,18 +23,27 @@ android {
 }
 
 dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
     //Kotlin
     implementation(Libraries.kotlinStdLib)
 
     //AndroidX ktx
     implementation(Libraries.coreKtx)
-    implementation(Libraries.fragmentKtx)
+    implementation(Libraries.fragmentKtx) {
+        exclude group: 'org.jetbrains.kotlinx'
+        exclude module: 'lifecycle-viewmodel-ktx'
+        exclude module: 'lifecycle-viewmodel'
+    }
 
     //AndroidX
-    implementation(Libraries.appCompat)
+    implementation(Libraries.appCompat) {
+        exclude module: 'lifecycle-viewmodel'
+    }
     implementation(Libraries.constraintLayout)
 
     //Android
-    implementation(Libraries.material)
+    implementation(Libraries.material) {
+        exclude group: 'androidx.transition', module: 'transition'
+    }
 
 }

@@ -1,4 +1,4 @@
-package com.dionos.user
+package com.dionos.user.presentation.view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -6,22 +6,37 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewStub
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.dionos.user.databinding.FragmentSignInBinding
+import com.dionos.user.presentation.viewModel.IsTokenSavedState
+import com.dionos.user.presentation.viewModel.SignInViewModel
+import com.dionos.user.presentation.viewModel.UserIntent
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import java.util.*
 
+@AndroidEntryPoint
 class SignInFragment : Fragment() {
 
     //Views
     private var _binding: FragmentSignInBinding? = null
     private val binding get() = _binding
 
+    private var viewStub: ViewStub? = null
+
     //Variables
     private var state: String = UUID.randomUUID().toString()
+
+    //ViewModel
+    private val viewModel: SignInViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,11 +46,13 @@ class SignInFragment : Fragment() {
         onInitView(inflater, container)
         setWebView()
         setToolbar()
+        setObserver()
         return binding?.root
     }
 
     private fun onInitView(inflater: LayoutInflater, container: ViewGroup?) {
         _binding = FragmentSignInBinding.inflate(inflater, container, false)
+        viewStub = binding?.viewStub
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -63,6 +80,7 @@ class SignInFragment : Fragment() {
                         "&state=$state"
             )
 
+
         }
 
     }
@@ -86,14 +104,26 @@ class SignInFragment : Fragment() {
             }
 
             if (map["state"].equals(state)) {
-                Log.i("login", "state OK")
-                if (map["access_token"]?.isNotBlank() == true) {
-                    Log.i("login", "save token")
+                val accessToken = map["access_token"]
+                if (accessToken?.isNotBlank() == true) {
+                    lifecycleScope.launch {
+                        viewModel.userIntent.send(UserIntent.SaveToken(accessToken))
+                    }
                 } else {
                     Log.i("login", "token empty")
                 }
             } else {
                 Log.i("login", "state wrong")
+            }
+        }
+    }
+
+    private fun setObserver() {
+        lifecycleScope.launch {
+            viewModel.isTokenSaved.collect {
+                if (it is IsTokenSavedState.Success) {
+                    //TODO go to next screen
+                }
             }
         }
     }
