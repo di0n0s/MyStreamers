@@ -21,7 +21,6 @@ class SignInViewModel @ViewModelInject constructor(private val sharedPreferences
     val isTokenSaved: StateFlow<IsTokenSavedState>
         get() = _isTokenSaved
 
-
     init {
         handleUserIntent()
     }
