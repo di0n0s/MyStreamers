@@ -67,4 +67,15 @@ dependencies {
 
     //Coroutines
     implementation(Libraries.coroutinesAndroid)
+    testImplementation(Libraries.coroutinesTest)
+
+    //JUnit
+    testImplementation(Libraries.jUnit)
+
+    //Robolectric
+    testImplementation(Libraries.robolectric)
+
+    //Mockito
+    testImplementation(Libraries.mockito)
+
 }
