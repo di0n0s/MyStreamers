@@ -54,6 +54,15 @@ object Libraries {
 
         //Coroutines
         const val coroutines = "1.5.2"
+
+        //JUnit
+        const val jUnit = "4.13.2"
+
+        //Robolectric
+        const val robolectric = "1.4.0"
+
+        //Mockito
+        const val mockito = "4.1.0"
     }
 
     //Kotlin
@@ -93,4 +102,17 @@ object Libraries {
     //Coroutines
     const val coroutinesAndroid =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+
+    const val coroutinesTest =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
+
+    //JUnit
+    const val jUnit = "junit:junit:${Versions.jUnit}"
+
+    //Robolectric
+    const val robolectric = "androidx.test:core:${Versions.robolectric}"
+
+    //Mockito
+    const val mockito = "org.mockito:mockito-core:${Versions.mockito}"
+
 }
