@@ -1,4 +1,4 @@
-package com.dionos.user
+package com.dionos.user.presentation.view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -11,9 +11,18 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.dionos.user.databinding.FragmentSignInBinding
+import com.dionos.user.presentation.viewModel.IsTokenSavedState
+import com.dionos.user.presentation.viewModel.SignInViewModel
+import com.dionos.user.presentation.viewModel.UserIntent
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import java.util.*
 
+@AndroidEntryPoint
 class SignInFragment : Fragment() {
 
     //Views
@@ -23,6 +32,9 @@ class SignInFragment : Fragment() {
     //Variables
     private var state: String = UUID.randomUUID().toString()
 
+    //ViewModel
+    private val viewModel: SignInViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,6 +43,7 @@ class SignInFragment : Fragment() {
         onInitView(inflater, container)
         setWebView()
         setToolbar()
+        setObserver()
         return binding?.root
     }
 
@@ -63,6 +76,7 @@ class SignInFragment : Fragment() {
                         "&state=$state"
             )
 
+
         }
 
     }
@@ -86,14 +100,26 @@ class SignInFragment : Fragment() {
             }
 
             if (map["state"].equals(state)) {
-                Log.i("login", "state OK")
-                if (map["access_token"]?.isNotBlank() == true) {
-                    Log.i("login", "save token")
+                val accessToken = map["access_token"]
+                if (accessToken?.isNotBlank() == true) {
+                    lifecycleScope.launch {
+                        viewModel.userIntent.send(UserIntent.SaveToken(accessToken))
+                    }
                 } else {
                     Log.i("login", "token empty")
                 }
             } else {
                 Log.i("login", "state wrong")
+            }
+        }
+    }
+
+    private fun setObserver() {
+        lifecycleScope.launch {
+            viewModel.isTokenSaved.collect {
+                if (it is IsTokenSavedState.Success) {
+                    //TODO go to next screen
+                }
             }
         }
     }

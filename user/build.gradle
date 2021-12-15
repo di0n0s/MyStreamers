@@ -1,6 +1,7 @@
 apply plugin: (Plugins.androidLibrary)
 apply plugin: (Plugins.kotlinAndroid)
 apply plugin: (Plugins.kotlinKapt)
+apply plugin: (Plugins.hilt)
 
 android {
     compileSdkVersion(AndroidSdk.compile)
@@ -27,6 +28,7 @@ android {
 }
 
 dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
     //Visibility
     implementation project(':core')
 
@@ -35,16 +37,34 @@ dependencies {
 
     //AndroidX ktx
     implementation(Libraries.coreKtx)
-    implementation(Libraries.fragmentKtx)
+    implementation(Libraries.fragmentKtx) {
+        exclude module: 'lifecycle-viewmodel-ktx'
+        exclude module: 'lifecycle-viewmodel'
+    }
 
     //AndroidX
-    implementation(Libraries.appCompat)
+    implementation(Libraries.appCompat) {
+        exclude module: 'lifecycle-viewmodel'
+    }
     implementation(Libraries.constraintLayout)
 
     //Android
-    implementation(Libraries.material)
+    implementation(Libraries.material) {
+        exclude group: 'androidx.transition', module: 'transition'
+    }
+
 
     //Hilt
     implementation(Libraries.hilt)
+    kapt(Libraries.hiltAndroidCompiler)
+
+    //ViewModel
+    implementation(Libraries.viewModel)
+
+    //Hilt with ViewModel
+    implementation(Libraries.hiltLifecycleViewModel)
     kapt(Libraries.hiltCompiler)
+
+    //Coroutines
+    implementation(Libraries.coroutinesAndroid)
 }
