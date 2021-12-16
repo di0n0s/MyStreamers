@@ -36,10 +36,8 @@ class SignInViewModel @ViewModelInject constructor(private val sharedPreferences
     }
 
     private fun saveToken(token: String) {
-        viewModelScope.launch {
-            if (sharedPreferencesDataSource.setAccessToken(token)) {
-                _isTokenSaved.value = IsTokenSavedState.Success
-            }
+        if (sharedPreferencesDataSource.setAccessToken(token)) {
+            _isTokenSaved.value = IsTokenSavedState.Success
         }
     }
 

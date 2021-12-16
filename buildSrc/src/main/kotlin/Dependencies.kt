@@ -59,7 +59,7 @@ object Libraries {
         const val jUnit = "4.13.2"
 
         //Robolectric
-        const val robolectric = "1.4.0"
+        const val robolectric = "4.7.3"
 
         //Mockito
         const val mockito = "4.1.0"
@@ -110,7 +110,7 @@ object Libraries {
     const val jUnit = "junit:junit:${Versions.jUnit}"
 
     //Robolectric
-    const val robolectric = "androidx.test:core:${Versions.robolectric}"
+    const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
 
     //Mockito
     const val mockito = "org.mockito:mockito-core:${Versions.mockito}"
