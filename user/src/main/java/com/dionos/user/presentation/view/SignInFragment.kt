@@ -1,6 +1,7 @@
 package com.dionos.user.presentation.view
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.dionos.user.BuildConfig
 import com.dionos.user.databinding.FragmentSignInBinding
 import com.dionos.user.presentation.viewModel.IsTokenSavedState
 import com.dionos.user.presentation.viewModel.SignInViewModel
@@ -54,6 +56,11 @@ class SignInFragment : Fragment() {
     @SuppressLint("SetJavaScriptEnabled")
     private fun setWebView() {
         binding?.webView?.apply {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                if (BuildConfig.DEBUG) {
+                    WebView.setWebContentsDebuggingEnabled(true)
+                }
+            }
             this.settings.javaScriptEnabled = true
 
             webViewClient = object : WebViewClient() {

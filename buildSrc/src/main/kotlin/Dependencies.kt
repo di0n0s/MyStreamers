@@ -63,6 +63,19 @@ object Libraries {
 
         //Mockito
         const val mockito = "4.1.0"
+
+        //Fragment testing
+        const val fragmentTesting = "1.4.0"
+
+        //AndroidXTest
+        const val androidXTest = "1.4.0"
+
+        //Espresso
+        const val espresso = "3.1.0"
+
+        //JUnit Android
+        const val jUnitAndroid = "1.1.1"
+
     }
 
     //Kotlin
@@ -84,6 +97,8 @@ object Libraries {
     const val hilt = "com.google.dagger:hilt-android:${Build.Versions.googleHilt}"
     const val hiltAndroidCompiler =
         "com.google.dagger:hilt-android-compiler:${Build.Versions.googleHilt}"
+    const val hiltAndroidTesting =
+        "com.google.dagger:hilt-android-testing:${Build.Versions.googleHilt}"
 
     // Navigation
     const val navigationFragment =
@@ -109,10 +124,16 @@ object Libraries {
     //JUnit
     const val jUnit = "junit:junit:${Versions.jUnit}"
 
-    //Robolectric
-    const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
-
     //Mockito
     const val mockito = "org.mockito:mockito-core:${Versions.mockito}"
+
+    //UI Testing
+    const val testRunner = "androidx.test:runner:${Versions.androidXTest}"
+    const val testRules = "androidx.test:rules:${Versions.androidXTest}"
+    const val testCore = "androidx.test:core:${Versions.androidXTest}"
+    const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    const val webViewEspresso = "androidx.test.espresso:espresso-web:${Versions.espresso}"
+    const val jUnitAndroid = "androidx.test.ext:junit:${Versions.jUnitAndroid}"
+    const val fragmentTesting = "androidx.fragment:fragment-testing:${Versions.fragmentTesting}"
 
 }

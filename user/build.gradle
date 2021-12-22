@@ -7,6 +7,7 @@ android {
     compileSdkVersion(AndroidSdk.compile)
     defaultConfig {
         minSdkVersion(AndroidSdk.min)
+        testInstrumentationRunner "com.dionos.mystreamers.HiltTestRunner"
     }
 
     buildFeatures {
@@ -24,6 +25,10 @@ android {
 
     testOptions {
         unitTests.returnDefaultValues = true
+    }
+
+    packagingOptions {
+        exclude 'META-INF/user_debug.kotlin_module'
     }
 }
 
@@ -74,5 +79,16 @@ dependencies {
 
     //Mockito
     testImplementation(Libraries.mockito)
+
+    //UI Test
+    androidTestImplementation(Libraries.testRunner)
+    androidTestImplementation(Libraries.testRules)
+    androidTestImplementation(Libraries.testCore)
+    androidTestImplementation(Libraries.espresso)
+    androidTestImplementation(Libraries.webViewEspresso)
+    androidTestImplementation(Libraries.jUnitAndroid)
+    androidTestImplementation(Libraries.hiltAndroidTesting)
+    kaptAndroidTest(Libraries.hiltAndroidCompiler)
+    debugImplementation(Libraries.fragmentTesting)
 
 }
