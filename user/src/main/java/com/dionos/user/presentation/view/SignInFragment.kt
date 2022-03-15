@@ -31,6 +31,8 @@ class SignInFragment : Fragment() {
     private var _binding: FragmentSignInBinding? = null
     private val binding get() = _binding
 
+    private var webView: WebView? = null
+
     //Variables
     private var state: String = UUID.randomUUID().toString()
 
@@ -51,17 +53,18 @@ class SignInFragment : Fragment() {
 
     private fun onInitView(inflater: LayoutInflater, container: ViewGroup?) {
         _binding = FragmentSignInBinding.inflate(inflater, container, false)
+        webView = binding?.webView
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun setWebView() {
-        binding?.webView?.apply {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                if (BuildConfig.DEBUG) {
-                    WebView.setWebContentsDebuggingEnabled(true)
-                }
+        webView?.apply {
+            if (BuildConfig.DEBUG) {
+                WebView.setWebContentsDebuggingEnabled(true)
             }
-            this.settings.javaScriptEnabled = true
+            this.settings.apply {
+                javaScriptEnabled = true
+            }
 
             webViewClient = object : WebViewClient() {
                 override fun shouldOverrideUrlLoading(
@@ -71,7 +74,6 @@ class SignInFragment : Fragment() {
                     checkSignIn(request)
                     return super.shouldOverrideUrlLoading(view, request)
                 }
-
             }
 
             this.loadUrl(
@@ -118,6 +120,10 @@ class SignInFragment : Fragment() {
             } else {
                 Log.i("login", "state wrong")
             }
+        } else if (url == "") {
+
+        } else {
+            webView?.loadUrl(request?.url.toString())
         }
     }
 

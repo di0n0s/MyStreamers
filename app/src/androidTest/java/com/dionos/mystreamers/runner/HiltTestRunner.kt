@@ -1,4 +1,4 @@
-package com.dionos.mystreamers
+package com.dionos.mystreamers.runner
 
 import android.app.Application
 import android.content.Context

@@ -80,15 +80,4 @@ dependencies {
     //Mockito
     testImplementation(Libraries.mockito)
 
-    //UI Test
-    androidTestImplementation(Libraries.testRunner)
-    androidTestImplementation(Libraries.testRules)
-    androidTestImplementation(Libraries.testCore)
-    androidTestImplementation(Libraries.espresso)
-    androidTestImplementation(Libraries.webViewEspresso)
-    androidTestImplementation(Libraries.jUnitAndroid)
-    androidTestImplementation(Libraries.hiltAndroidTesting)
-    kaptAndroidTest(Libraries.hiltAndroidCompiler)
-    debugImplementation(Libraries.fragmentTesting)
-
 }
