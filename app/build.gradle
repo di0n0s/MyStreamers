@@ -14,7 +14,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.dionos.mystreamers.runner.HiltTestRunner"
     }
 
     buildTypes {
@@ -22,6 +22,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/user_debug.kotlin_module'
     }
 }
 
@@ -68,4 +72,10 @@ dependencies {
         exclude module: 'lifecycle-viewmodel'
     }
 
+    //UI Test
+    androidTestImplementation(Libraries.testRunner)
+    androidTestImplementation(Libraries.hiltAndroidTesting)
+    kaptAndroidTest(Libraries.hiltAndroidCompiler)
+    debugImplementation(Libraries.fragmentTesting)
+    androidTestImplementation(Libraries.webViewEspresso)
 }

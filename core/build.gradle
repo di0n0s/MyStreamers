@@ -20,6 +20,10 @@ android {
     testOptions {
         unitTests.returnDefaultValues = true
     }
+
+    packagingOptions {
+        exclude 'META-INF/user_debug.kotlin_module'
+    }
 }
 
 dependencies {
@@ -45,5 +49,12 @@ dependencies {
     implementation(Libraries.material) {
         exclude group: 'androidx.transition', module: 'transition'
     }
+
+    //Hilt
+    implementation(Libraries.hilt)
+    kapt(Libraries.hiltAndroidCompiler)
+
+    //UI Test
+    debugImplementation(Libraries.fragmentTesting)
 
 }

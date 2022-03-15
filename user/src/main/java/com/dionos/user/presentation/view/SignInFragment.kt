@@ -1,6 +1,7 @@
 package com.dionos.user.presentation.view
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.dionos.user.BuildConfig
 import com.dionos.user.databinding.FragmentSignInBinding
 import com.dionos.user.presentation.viewModel.IsTokenSavedState
 import com.dionos.user.presentation.viewModel.SignInViewModel
@@ -28,6 +30,8 @@ class SignInFragment : Fragment() {
     //Views
     private var _binding: FragmentSignInBinding? = null
     private val binding get() = _binding
+
+    private var webView: WebView? = null
 
     //Variables
     private var state: String = UUID.randomUUID().toString()
@@ -49,12 +53,18 @@ class SignInFragment : Fragment() {
 
     private fun onInitView(inflater: LayoutInflater, container: ViewGroup?) {
         _binding = FragmentSignInBinding.inflate(inflater, container, false)
+        webView = binding?.webView
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun setWebView() {
-        binding?.webView?.apply {
-            this.settings.javaScriptEnabled = true
+        webView?.apply {
+            if (BuildConfig.DEBUG) {
+                WebView.setWebContentsDebuggingEnabled(true)
+            }
+            this.settings.apply {
+                javaScriptEnabled = true
+            }
 
             webViewClient = object : WebViewClient() {
                 override fun shouldOverrideUrlLoading(
@@ -64,7 +74,6 @@ class SignInFragment : Fragment() {
                     checkSignIn(request)
                     return super.shouldOverrideUrlLoading(view, request)
                 }
-
             }
 
             this.loadUrl(
@@ -111,6 +120,10 @@ class SignInFragment : Fragment() {
             } else {
                 Log.i("login", "state wrong")
             }
+        } else if (url == "") {
+
+        } else {
+            webView?.loadUrl(request?.url.toString())
         }
     }
 
