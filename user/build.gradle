@@ -70,6 +70,10 @@ dependencies {
     implementation(Libraries.hiltLifecycleViewModel)
     kapt(Libraries.hiltCompiler)
 
+    //Coroutines
+    implementation(Libraries.coroutinesAndroid)
+    testImplementation(Libraries.coroutinesTest)
+
     //JUnit
     testImplementation(Libraries.jUnit)
 
