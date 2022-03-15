@@ -1,41 +1,34 @@
-apply plugin: (Plugins.androidLibrary)
-apply plugin: (Plugins.kotlinAndroid)
-apply plugin: (Plugins.kotlinKapt)
-apply plugin: (Plugins.hilt)
+plugins {
+    id(Plugins.androidLibrary)
+    id(Plugins.kotlinAndroid)
+    id(Plugins.kotlinKapt)
+    id(Plugins.hilt)
+}
 
 android {
-    compileSdkVersion(AndroidSdk.compile)
-    defaultConfig {
-        minSdkVersion(AndroidSdk.min)
-        testInstrumentationRunner "com.dionos.mystreamers.HiltTestRunner"
-    }
+    compileSdk = AndroidSdk.compile
 
+    defaultConfig {
+        minSdk = AndroidSdk.min
+        testInstrumentationRunner = "com.dionos.mystreamers.HiltTestRunner"
+    }
     buildFeatures {
-        viewBinding true
+        viewBinding = true
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
-
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
-
-    testOptions {
-        unitTests.returnDefaultValues = true
-    }
-
-    packagingOptions {
-        exclude 'META-INF/user_debug.kotlin_module'
     }
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
     //Visibility
-    implementation project(':core')
+    implementation(project(":core"))
+    implementation(project(":user"))
 
     //Kotlin
     implementation(Libraries.kotlinStdLib)
@@ -43,21 +36,20 @@ dependencies {
     //AndroidX ktx
     implementation(Libraries.coreKtx)
     implementation(Libraries.fragmentKtx) {
-        exclude module: 'lifecycle-viewmodel-ktx'
-        exclude module: 'lifecycle-viewmodel'
+        exclude(module = "lifecycle-viewmodel-ktx")
+        exclude(module = "lifecycle-viewmodel")
     }
 
     //AndroidX
     implementation(Libraries.appCompat) {
-        exclude module: 'lifecycle-viewmodel'
+        exclude(module = "lifecycle-viewmodel")
     }
     implementation(Libraries.constraintLayout)
 
     //Android
     implementation(Libraries.material) {
-        exclude group: 'androidx.transition', module: 'transition'
+        exclude(group = "androidx.transition", module = "transition")
     }
-
 
     //Hilt
     implementation(Libraries.hilt)
@@ -70,10 +62,13 @@ dependencies {
     implementation(Libraries.hiltLifecycleViewModel)
     kapt(Libraries.hiltCompiler)
 
+    //Coroutines
+    implementation(Libraries.coroutinesAndroid)
+    testImplementation(Libraries.coroutinesTest)
+
     //JUnit
     testImplementation(Libraries.jUnit)
 
     //Mockito
     testImplementation(Libraries.mockito)
-
 }

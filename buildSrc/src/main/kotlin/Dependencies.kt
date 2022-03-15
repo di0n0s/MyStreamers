@@ -3,7 +3,7 @@ const val kotlinVersion = "1.6.0"
 
 object Build {
     object Versions {
-        const val buildToolsVersion = "7.0.4"
+        const val buildToolsVersion = "7.1.2"
         const val googleServicesVersion = "4.2.0"
         const val googleHilt = "2.28-alpha"
     }
