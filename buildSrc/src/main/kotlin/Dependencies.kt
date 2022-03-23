@@ -46,6 +46,9 @@ object Libraries {
         //Glide
         const val glide = "4.13.0"
 
+        //Paging
+        const val paging = "3.1.1"
+
         //Navigation
         const val navigation = "2.3.5"
 
@@ -99,6 +102,9 @@ object Libraries {
     //Glide
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val glideCompiler = "com.github.bumptech.glide:${Versions.glide}"
+
+    //Paging
+    const val paging = "androidx.paging:paging-runtime:${Versions.paging}"
 
     //Hilt
     const val hilt = "com.google.dagger:hilt-android:${Build.Versions.googleHilt}"

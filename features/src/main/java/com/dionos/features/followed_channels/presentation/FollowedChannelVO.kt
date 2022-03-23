@@ -1,6 +1,7 @@
 package com.dionos.features.followed_channels.presentation
 
-data class ChannelVO(
+data class FollowedChannelVO(
+    val id: String,
     val imagePath: String,
     val name: String,
     val title: String,

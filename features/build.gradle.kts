@@ -55,6 +55,9 @@ dependencies {
     implementation(Libraries.glide)
     annotationProcessor(Libraries.glideCompiler)
 
+    //Paging
+    implementation(Libraries.paging)
+
     //Hilt
     implementation(Libraries.hilt)
     kapt(Libraries.hiltAndroidCompiler)
