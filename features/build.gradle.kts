@@ -51,6 +51,10 @@ dependencies {
         exclude(group = "androidx.transition", module = "transition")
     }
 
+    //Glide
+    implementation(Libraries.glide)
+    annotationProcessor(Libraries.glideCompiler)
+
     //Hilt
     implementation(Libraries.hilt)
     kapt(Libraries.hiltAndroidCompiler)

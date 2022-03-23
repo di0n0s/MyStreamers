@@ -43,6 +43,9 @@ object Libraries {
         //Material
         const val material = "1.6.0-alpha01"
 
+        //Glide
+        const val glide = "4.13.0"
+
         //Navigation
         const val navigation = "2.3.5"
 
@@ -92,6 +95,10 @@ object Libraries {
 
     //Material
     const val material = "com.google.android.material:material:${Versions.material}"
+
+    //Glide
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
+    const val glideCompiler = "com.github.bumptech.glide:${Versions.glide}"
 
     //Hilt
     const val hilt = "com.google.dagger:hilt-android:${Build.Versions.googleHilt}"
