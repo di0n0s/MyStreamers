@@ -46,6 +46,12 @@ object Libraries {
         //Glide
         const val glide = "4.13.0"
 
+        //Retrofit
+        const val retrofit = "2.9.0"
+
+        //Gson
+        const val gson = "2.9.0"
+
         //Paging
         const val paging = "3.1.1"
 
@@ -102,6 +108,12 @@ object Libraries {
     //Glide
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val glideCompiler = "com.github.bumptech.glide:${Versions.glide}"
+
+    //Retrofit
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+
+    //Gson
+    const val gson = "com.google.code.gson:gson:${Versions.gson}"
 
     //Paging
     const val paging = "androidx.paging:paging-runtime:${Versions.paging}"
