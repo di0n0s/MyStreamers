@@ -13,6 +13,8 @@ class UserSharedPreferencesDataSource @Inject constructor(@ApplicationContext pr
         private const val ACCESS_TOKEN_KEY = "ACCESS_TOKEN_KEY"
     }
 
+    fun getAccessToken(): String? = preferences.getString(ACCESS_TOKEN_KEY, null)
+
     fun setAccessToken(token: String): Boolean {
         with(preferences.edit()) {
             putString(ACCESS_TOKEN_KEY, token)

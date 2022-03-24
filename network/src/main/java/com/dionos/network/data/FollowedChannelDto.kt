@@ -1,4 +1,4 @@
-package com.dionos.core.data
+package com.dionos.network.data
 
 import com.google.gson.annotations.SerializedName
 
