@@ -49,6 +49,9 @@ object Libraries {
         //Retrofit
         const val retrofit = "2.9.0"
 
+        //Okhttp3
+        const val okhttp3 = "4.9.3"
+
         //Gson
         const val gson = "2.9.0"
 
@@ -112,8 +115,13 @@ object Libraries {
     //Retrofit
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
 
+    //Okhttp3
+    const val okhttp3 = "com.squareup.okhttp3:okhttp:${Versions.okhttp3}"
+    const val loginInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp3}"
+
     //Gson
     const val gson = "com.google.code.gson:gson:${Versions.gson}"
+    const val gsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.gson}"
 
     //Paging
     const val paging = "androidx.paging:paging-runtime:${Versions.paging}"

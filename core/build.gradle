@@ -49,18 +49,4 @@ dependencies {
     implementation(Libraries.material) {
         exclude group: 'androidx.transition', module: 'transition'
     }
-
-    //Retrofit
-    implementation(Libraries.retrofit)
-
-    //Gson
-    implementation(Libraries.gson)
-
-    //Hilt
-    implementation(Libraries.hilt)
-    kapt(Libraries.hiltAndroidCompiler)
-
-    //UI Test
-    debugImplementation(Libraries.fragmentTesting)
-
 }
