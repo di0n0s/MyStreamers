@@ -35,13 +35,13 @@ dependencies {
     implementation(Libraries.okhttp3)
     implementation(Libraries.loginInterceptor)
 
-    //Hilt
-    implementation(Libraries.hilt)
-    kapt(Libraries.hiltAndroidCompiler)
-
     //Gson
     implementation(Libraries.gson)
     implementation(Libraries.gsonConverter)
+
+    //Hilt
+    implementation(Libraries.hilt)
+    kapt(Libraries.hiltAndroidCompiler)
 
     //JUnit
     testImplementation(Libraries.jUnit)
