@@ -1,7 +1,6 @@
 package com.dionos.network.di
 
 import com.dionos.core.BuildConfig
-import com.dionos.network.data.TwitchApiService
 import com.dionos.user.data.UserSharedPreferencesDataSource
 import dagger.Module
 import dagger.Provides
@@ -18,7 +17,9 @@ import java.util.concurrent.TimeUnit
 object NetworkModule {
 
     @Provides
-    fun provideTwitchApiService(sharedPreferencesDataSource: UserSharedPreferencesDataSource): TwitchApiService {
+    fun provideRetrofitBuilder(
+        sharedPreferencesDataSource: UserSharedPreferencesDataSource,
+    ): Retrofit.Builder {
         val builder = OkHttpClient.Builder().apply {
             readTimeout(60, TimeUnit.SECONDS)
             connectTimeout(60, TimeUnit.SECONDS)
@@ -50,7 +51,5 @@ object NetworkModule {
             .baseUrl("https://api.twitch.tv/helix")
             .addConverterFactory(GsonConverterFactory.create())
             .client(builder.build())
-            .build()
-            .create(TwitchApiService::class.java)
     }
 }

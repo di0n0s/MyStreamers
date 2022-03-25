@@ -36,6 +36,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //Visibility
     implementation project(':core')
+    implementation project(':network')
 
     //Kotlin
     implementation(Libraries.kotlinStdLib)
@@ -57,7 +58,6 @@ dependencies {
     implementation(Libraries.material) {
         exclude group: 'androidx.transition', module: 'transition'
     }
-
 
     //Hilt
     implementation(Libraries.hilt)

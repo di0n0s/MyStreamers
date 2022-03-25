@@ -7,7 +7,6 @@ import androidx.annotation.StyleRes
 import androidx.fragment.app.Fragment
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
-import com.dionos.core.R
 import dagger.hilt.internal.Preconditions
 
 inline fun <reified F : Fragment> launchFragmentInHiltContainer(

@@ -1,7 +1,6 @@
 package com.dionos.user.presentation.view
 
 import android.annotation.SuppressLint
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -112,7 +111,7 @@ class SignInFragment : Fragment() {
                 val accessToken = map["access_token"]
                 if (accessToken?.isNotBlank() == true) {
                     lifecycleScope.launch {
-                        viewModel.userIntent.send(UserIntent.SaveToken(accessToken))
+                        viewModel.userIntent.send(UserIntent.SaveToken("Bearer $accessToken"))
                     }
                 } else {
                     Log.i("login", "token empty")

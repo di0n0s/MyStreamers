@@ -30,25 +30,18 @@ dependencies {
     //Kotlin
     implementation(Libraries.kotlinStdLib)
 
-    //AndroidX ktx
-    implementation(Libraries.coreKtx)
-
-    //Hilt
-    implementation(Libraries.hilt)
-    kapt(Libraries.hiltAndroidCompiler)
-
     //Retrofit
     implementation(Libraries.retrofit)
     implementation(Libraries.okhttp3)
     implementation(Libraries.loginInterceptor)
 
+    //Hilt
+    implementation(Libraries.hilt)
+    kapt(Libraries.hiltAndroidCompiler)
+
     //Gson
     implementation(Libraries.gson)
     implementation(Libraries.gsonConverter)
-
-    //Coroutines
-    implementation(Libraries.coroutinesAndroid)
-    testImplementation(Libraries.coroutinesTest)
 
     //JUnit
     testImplementation(Libraries.jUnit)

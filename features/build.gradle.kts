@@ -28,6 +28,7 @@ android {
 dependencies {
     //Visibility
     implementation(project(":core"))
+    implementation(project(":network"))
     implementation(project(":user"))
 
     //Kotlin
@@ -68,6 +69,15 @@ dependencies {
     //Hilt with ViewModel
     implementation(Libraries.hiltLifecycleViewModel)
     kapt(Libraries.hiltCompiler)
+
+    //Retrofit
+    implementation(Libraries.retrofit)
+    implementation(Libraries.okhttp3)
+    implementation(Libraries.loginInterceptor)
+
+    //Gson
+    implementation(Libraries.gson)
+    implementation(Libraries.gsonConverter)
 
     //Coroutines
     implementation(Libraries.coroutinesAndroid)
