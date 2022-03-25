@@ -1,6 +1,6 @@
-package com.dionos.features.followed_channels.presentation
+package com.dionos.features.followed_stream_list.presentation
 
-data class FollowedChannelVO(
+data class FollowedStreamVO(
     val id: String,
     val imagePath: String,
     val name: String,

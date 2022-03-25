@@ -1,4 +1,4 @@
-package com.dionos.features.followed_channels.presentation
+package com.dionos.features.followed_stream_list.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.dionos.features.R
 import com.dionos.features.databinding.ChannelItemBinding
 
-class FollowedChannelViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
+class FollowedStreamViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(
         R.layout.channel_item, parent, false
     )
@@ -15,15 +15,15 @@ class FollowedChannelViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
 
     private val binding = ChannelItemBinding.bind(itemView)
 
-    fun bind(followedChannelVO: FollowedChannelVO?) {
+    fun bind(followedStreamVO: FollowedStreamVO?) {
         with(binding) {
             Glide.with(itemView)
-                .load(followedChannelVO?.imagePath)
+                .load(followedStreamVO?.imagePath)
                 .into(thumbnailImageView)
-            viewersTextView.text = followedChannelVO?.viewers
-            streamTitleTextView.text = followedChannelVO?.title
-            channelNameTextView.text = followedChannelVO?.name
-            categoryNameTextView.text = followedChannelVO?.category
+            viewersTextView.text = followedStreamVO?.viewers
+            streamTitleTextView.text = followedStreamVO?.title
+            channelNameTextView.text = followedStreamVO?.name
+            categoryNameTextView.text = followedStreamVO?.category
         }
 
     }

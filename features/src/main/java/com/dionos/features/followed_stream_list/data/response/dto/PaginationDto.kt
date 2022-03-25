@@ -1,4 +1,4 @@
-package com.dionos.features.followed_channels.data.response.dto
+package com.dionos.features.followed_stream_list.data.response.dto
 
 import com.google.gson.annotations.SerializedName
 

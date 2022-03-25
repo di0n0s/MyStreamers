@@ -1,6 +1,6 @@
-package com.dionos.features.followed_channels.data.repository
+package com.dionos.features.followed_stream_list.data.repository
 
-import com.dionos.features.followed_channels.data.source.FeaturesNetworkDataSource
+import com.dionos.features.followed_stream_list.data.source.FeaturesNetworkDataSource
 import com.dionos.user.data.source.UserNetworkDataSource
 import javax.inject.Inject
 

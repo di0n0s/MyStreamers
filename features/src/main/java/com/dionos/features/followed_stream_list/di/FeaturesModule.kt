@@ -1,6 +1,6 @@
-package com.dionos.features.followed_channels.di
+package com.dionos.features.followed_stream_list.di
 
-import com.dionos.features.followed_channels.data.service.TwitchApiService
+import com.dionos.features.followed_stream_list.data.service.TwitchApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
