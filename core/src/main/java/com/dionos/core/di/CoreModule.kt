@@ -1,7 +1,7 @@
-package com.dionos.network.di
+package com.dionos.core.di
 
 import com.dionos.core.BuildConfig
-import com.dionos.user.data.UserSharedPreferencesDataSource
+import com.dionos.core.data.source.UserSharedPreferencesDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit
 
 @Module
 @InstallIn(FragmentComponent::class)
-object NetworkModule {
+object CoreModule {
 
     @Provides
     fun provideRetrofitBuilder(

@@ -1,4 +1,4 @@
-package com.dionos.user.data
+package com.dionos.core.data.source
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext

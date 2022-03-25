@@ -36,7 +36,6 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //Visibility
     implementation project(':core')
-    implementation project(':network')
 
     //Kotlin
     implementation(Libraries.kotlinStdLib)
@@ -65,10 +64,6 @@ dependencies {
 
     //ViewModel
     implementation(Libraries.viewModel)
-
-    //Hilt with ViewModel
-    implementation(Libraries.hiltLifecycleViewModel)
-    kapt(Libraries.hiltCompiler)
 
     //Retrofit
     implementation(Libraries.retrofit)

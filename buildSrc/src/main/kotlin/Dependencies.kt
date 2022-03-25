@@ -1,11 +1,11 @@
-const val kotlinVersion = "1.6.0"
+const val kotlinVersion = "1.6.10"
 
 
 object Build {
     object Versions {
         const val buildToolsVersion = "7.1.2"
         const val googleServicesVersion = "4.2.0"
-        const val googleHilt = "2.28-alpha"
+        const val googleHilt = "2.41"
     }
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.buildToolsVersion}"
@@ -63,9 +63,6 @@ object Libraries {
 
         //Lifecycle
         const val lifecycle = "2.4.0"
-
-        //AndroidX Hilt
-        const val androidXHilt = "1.0.0-alpha01"
 
         //Coroutines
         const val coroutines = "1.5.2"
@@ -141,11 +138,6 @@ object Libraries {
 
     //ViewModel
     const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
-
-    //ViewModel with Hilt
-    const val hiltLifecycleViewModel =
-        "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.androidXHilt}"
-    const val hiltCompiler = "androidx.hilt:hilt-compiler:${Versions.androidXHilt}"
 
     //Coroutines
     const val coroutinesAndroid =

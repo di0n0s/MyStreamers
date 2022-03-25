@@ -1,7 +1,8 @@
-package com.dionos.user.data
+package com.dionos.core.data
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.dionos.core.data.source.UserSharedPreferencesDataSource
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -29,7 +30,7 @@ class UserSharedPreferencesDataSourceTest {
     fun setUp() {
         `when`(
             context.getSharedPreferences(
-                "com.dionos.user.data.UserSharedPreferencesDataSource",
+                UserSharedPreferencesDataSource::class.java.name,
                 Context.MODE_PRIVATE
             )
         ).thenReturn(sharedPreferences)

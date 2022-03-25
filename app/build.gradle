@@ -61,10 +61,6 @@ dependencies {
     implementation(Libraries.hilt)
     kapt(Libraries.hiltAndroidCompiler)
 
-    //Hilt with ViewModel
-    implementation(Libraries.hiltLifecycleViewModel)
-    kapt(Libraries.hiltCompiler)
-
     //Navigation
     implementation(Libraries.navigationFragment)
     implementation(Libraries.navigationUi)

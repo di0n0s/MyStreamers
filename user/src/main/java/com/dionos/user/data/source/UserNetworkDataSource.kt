@@ -1,4 +1,4 @@
-package com.dionos.user.data
+package com.dionos.user.data.source
 
 import com.dionos.user.data.service.UserApiService
 import javax.inject.Inject

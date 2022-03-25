@@ -1,7 +1,7 @@
 package com.dionos.user.presentation.viewModel
 
+import com.dionos.core.data.source.UserSharedPreferencesDataSource
 import com.dionos.user.MainCoroutineRule
-import com.dionos.user.data.UserSharedPreferencesDataSource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals

@@ -28,7 +28,6 @@ android {
 dependencies {
     //Visibility
     implementation(project(":core"))
-    implementation(project(":network"))
     implementation(project(":user"))
 
     //Kotlin
@@ -65,10 +64,6 @@ dependencies {
 
     //ViewModel
     implementation(Libraries.viewModel)
-
-    //Hilt with ViewModel
-    implementation(Libraries.hiltLifecycleViewModel)
-    kapt(Libraries.hiltCompiler)
 
     //Retrofit
     implementation(Libraries.retrofit)
