@@ -10,8 +10,12 @@ class FeaturesRepository @Inject constructor(
     private val featuresNetworkDataSource: FeaturesNetworkDataSource
 ) {
 
-    suspend fun getFollowedStreamList(cursor: String?): FollowedStreamListResponse {
+    suspend fun getFollowedStreamList(cursor: String?, loadSize: Int): FollowedStreamListResponse {
         val userId = userNetworkDataSource.getUserId()
-        return featuresNetworkDataSource.getFollowedStreamList(userId = userId, cursor = cursor)
+        return featuresNetworkDataSource.getFollowedStreamList(
+            userId = userId,
+            cursor = cursor,
+            loadSize = loadSize
+        )
     }
 }

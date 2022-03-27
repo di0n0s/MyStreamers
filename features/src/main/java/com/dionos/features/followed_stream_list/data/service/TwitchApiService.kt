@@ -10,7 +10,7 @@ interface TwitchApiService {
     suspend fun getFollowedStreamList(
         @Query("user_id") userId: String,
         @Query("after") cursor: String?,
-        @Query("first") quantity: Int = 20,
+        @Query("first") loadSize: Int,
     ): FollowedStreamListResponse
 
 }
