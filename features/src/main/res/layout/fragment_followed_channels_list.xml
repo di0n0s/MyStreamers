@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context=".followed_stream_list.presentation.FollowedStreamListFragment">
+    tools:context=".followed_stream_list.presentation.view.FollowedStreamListFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

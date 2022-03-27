@@ -2,7 +2,7 @@ package com.dionos.features.followed_stream_list.data.response.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class FollowedChannelDto(
+data class FollowedStreamDto(
     @SerializedName("id") val id: String,
     @SerializedName("title") val title: String,
     @SerializedName("user_name") val userName: String,

@@ -1,8 +1,10 @@
-package com.dionos.features.followed_stream_list.presentation
+package com.dionos.features.followed_stream_list.presentation.adapter
 
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import com.dionos.features.followed_stream_list.presentation.view.FollowedStreamViewHolder
+import com.dionos.features.followed_stream_list.presentation.vo.FollowedStreamVO
 
 class FollowedStreamListAdapter : PagingDataAdapter<FollowedStreamVO, FollowedStreamViewHolder>(
     diffCallback

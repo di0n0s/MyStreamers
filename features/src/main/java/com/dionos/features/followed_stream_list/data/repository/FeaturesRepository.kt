@@ -1,5 +1,6 @@
 package com.dionos.features.followed_stream_list.data.repository
 
+import com.dionos.features.followed_stream_list.data.response.FollowedStreamListResponse
 import com.dionos.features.followed_stream_list.data.source.FeaturesNetworkDataSource
 import com.dionos.user.data.source.UserNetworkDataSource
 import javax.inject.Inject
@@ -9,8 +10,8 @@ class FeaturesRepository @Inject constructor(
     private val featuresNetworkDataSource: FeaturesNetworkDataSource
 ) {
 
-    suspend fun getFollowedStreamList(cursor: String) {
+    suspend fun getFollowedStreamList(cursor: String?): FollowedStreamListResponse {
         val userId = userNetworkDataSource.getUserId()
-        featuresNetworkDataSource.getFollowedStreamList(userId = userId, cursor = cursor)
+        return featuresNetworkDataSource.getFollowedStreamList(userId = userId, cursor = cursor)
     }
 }

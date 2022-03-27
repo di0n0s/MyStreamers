@@ -8,8 +8,8 @@ class FeaturesNetworkDataSource @Inject constructor(private val apiService: Twit
 
     suspend fun getFollowedStreamList(
         userId: String,
-        cursor: String
+        cursor: String?
     ): FollowedStreamListResponse =
-        apiService.getFollowedStreamList(userId = userId, cursor = cursor, quantity = 20)
+        apiService.getFollowedStreamList(userId = userId, cursor = cursor)
 
 }
