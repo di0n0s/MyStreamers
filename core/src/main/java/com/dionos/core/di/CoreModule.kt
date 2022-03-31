@@ -5,7 +5,7 @@ import com.dionos.core.data.source.UserSharedPreferencesDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.FragmentComponent
+import dagger.hilt.android.components.ViewModelComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 @Module
-@InstallIn(FragmentComponent::class)
+@InstallIn(ViewModelComponent::class)
 object CoreModule {
 
     @Provides
@@ -48,7 +48,7 @@ object CoreModule {
         }
 
         return Retrofit.Builder()
-            .baseUrl("https://api.twitch.tv/helix")
+            .baseUrl("https://api.twitch.tv/helix/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(builder.build())
     }

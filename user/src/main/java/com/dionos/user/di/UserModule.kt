@@ -1,6 +1,6 @@
-package com.dionos.features.followed_stream_list.di
+package com.dionos.user.di
 
-import com.dionos.features.followed_stream_list.data.service.TwitchApiService
+import com.dionos.user.data.service.UserApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -9,15 +9,15 @@ import retrofit2.Retrofit
 
 @Module
 @InstallIn(ViewModelComponent::class)
-object FeaturesModule {
+object UserModule {
 
     @Provides
-    fun provideTwitchApiService(
+    fun provideUserApiService(
         retrofitBuilder: Retrofit.Builder,
-    ): TwitchApiService {
+    ): UserApiService {
 
         return retrofitBuilder
             .build()
-            .create(TwitchApiService::class.java)
+            .create(UserApiService::class.java)
     }
 }

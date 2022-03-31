@@ -107,7 +107,7 @@ object Libraries {
 
     //Glide
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
-    const val glideCompiler = "com.github.bumptech.glide:${Versions.glide}"
+    const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
 
     //Retrofit
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
@@ -135,6 +135,8 @@ object Libraries {
         "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
     const val navigationTesting = "androidx.navigation:navigation-testing:${Versions.navigation}"
+    const val navigationCommonKtx =
+        "androidx.navigation:navigation-common-ktx:${Versions.navigation}"
 
     //ViewModel
     const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"

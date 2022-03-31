@@ -7,5 +7,16 @@
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.dionos.user.presentation.view.SignInFragment"
-        android:label="SignInFragment" />
+        android:label="SignInFragment">
+        <action
+            android:id="@+id/action_signInFragment_to_followedStreamListFragment"
+            app:destination="@id/followedStreamListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/followedStreamListFragment"
+        android:name="com.dionos.features.followed_stream_list.presentation.view.FollowedStreamListFragment"
+        android:label="FollowedStreamListFragment">
+        <deepLink app:uri="@string/followed_stream_list_fragment_uri" />
+    </fragment>
 </navigation>

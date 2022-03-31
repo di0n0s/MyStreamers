@@ -58,6 +58,10 @@ dependencies {
         exclude group: 'androidx.transition', module: 'transition'
     }
 
+    //Navigation
+    implementation(Libraries.navigationFragment)
+    implementation(Libraries.navigationCommonKtx)
+
     //Hilt
     implementation(Libraries.hilt)
     kapt(Libraries.hiltAndroidCompiler)
