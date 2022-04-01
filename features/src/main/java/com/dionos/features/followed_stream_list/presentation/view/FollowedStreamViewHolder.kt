@@ -5,16 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dionos.features.R
-import com.dionos.features.databinding.ChannelItemBinding
+import com.dionos.features.databinding.ItemFollowedStreamBinding
 import com.dionos.features.followed_stream_list.presentation.vo.FollowedStreamVO
 
 class FollowedStreamViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(
-        R.layout.channel_item, parent, false
+        R.layout.item_followed_stream, parent, false
     )
 ) {
 
-    private val binding = ChannelItemBinding.bind(itemView)
+    private val binding = ItemFollowedStreamBinding.bind(itemView)
 
     fun bind(followedStreamVO: FollowedStreamVO?) {
         with(binding) {

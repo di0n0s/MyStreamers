@@ -6,7 +6,7 @@ import retrofit2.http.Query
 
 interface TwitchApiService {
 
-    @GET("/streams/followed")
+    @GET("streams/followed")
     suspend fun getFollowedStreamList(
         @Query("user_id") userId: String,
         @Query("after") cursor: String?,

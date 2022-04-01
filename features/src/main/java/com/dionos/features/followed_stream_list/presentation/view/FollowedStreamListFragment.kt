@@ -14,7 +14,6 @@ import com.dionos.features.followed_stream_list.presentation.viewmodel.FollowedS
 import com.dionos.features.followed_stream_list.presentation.viewmodel.GetFollowedStreamListState
 import com.dionos.features.followed_stream_list.presentation.viewmodel.UserIntent
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -67,7 +66,7 @@ class FollowedStreamListFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.userIntent.send(UserIntent.GetFollowedStreamList)
 
-            viewModel.followedStreamList.collect { state ->
+            viewModel.followedStreamList.collectLatest { state ->
                 when (state) {
                     is GetFollowedStreamListState.Error -> TODO()
                     GetFollowedStreamListState.Idle -> {}
