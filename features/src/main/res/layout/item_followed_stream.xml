@@ -4,7 +4,8 @@
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -36,18 +37,30 @@
         android:id="@+id/stream_title_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingHorizontal="8dp"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:textStyle="bold"
         tool:text="This stream is awesome" />
 
     <TextView
         android:id="@+id/channel_name_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:paddingHorizontal="8dp"
+        android:textAppearance="@android:style/TextAppearance.Material.Body1"
         tool:text="Super famous streamer" />
 
     <TextView
         android:id="@+id/category_name_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:paddingHorizontal="8dp"
+        android:textAppearance="@android:style/TextAppearance.Material.Body1"
         tool:text="Just chatting" />
 
 </LinearLayout>

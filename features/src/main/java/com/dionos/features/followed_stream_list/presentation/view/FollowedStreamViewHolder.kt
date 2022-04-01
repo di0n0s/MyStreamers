@@ -8,6 +8,7 @@ import com.dionos.features.R
 import com.dionos.features.databinding.ItemFollowedStreamBinding
 import com.dionos.features.followed_stream_list.presentation.vo.FollowedStreamVO
 
+
 class FollowedStreamViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(
         R.layout.item_followed_stream, parent, false
@@ -17,9 +18,11 @@ class FollowedStreamViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     private val binding = ItemFollowedStreamBinding.bind(itemView)
 
     fun bind(followedStreamVO: FollowedStreamVO?) {
+
         with(binding) {
             Glide.with(itemView)
                 .load(followedStreamVO?.imagePath)
+                //TODO add .placeholder()
                 .into(thumbnailImageView)
             viewersTextView.text = followedStreamVO?.viewers
             streamTitleTextView.text = followedStreamVO?.title
