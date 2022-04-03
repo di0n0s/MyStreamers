@@ -21,8 +21,8 @@ class FollowedStreamListViewModel @Inject constructor(
     val userIntent = Channel<UserIntent>(Channel.UNLIMITED)
 
     private val _followedStreamList =
-        MutableStateFlow<GetFollowedStreamListState>(GetFollowedStreamListState.Idle)
-    val followedStreamList: StateFlow<GetFollowedStreamListState>
+        MutableStateFlow<GetFollowedStreamListFirstPageState>(GetFollowedStreamListFirstPageState.Idle)
+    val followedStreamList: StateFlow<GetFollowedStreamListFirstPageState>
         get() = _followedStreamList
 
     init {
@@ -33,19 +33,19 @@ class FollowedStreamListViewModel @Inject constructor(
         viewModelScope.launch {
             userIntent.consumeAsFlow().collect {
                 when (it) {
-                    is UserIntent.GetFollowedStreamList -> getFollowedStreamList()
+                    is UserIntent.GetFollowedStreamListFirstPage -> getFollowedStreamListFirstPage()
                 }
             }
 
         }
     }
 
-    private fun getFollowedStreamList() {
+    private fun getFollowedStreamListFirstPage() {
         viewModelScope.launch {
-            _followedStreamList.value = GetFollowedStreamListState.Loading
+            _followedStreamList.value = GetFollowedStreamListFirstPageState.Loading
 
             val pager = Pager(
-                config = PagingConfig(pageSize = 20, prefetchDistance = 2),
+                config = PagingConfig(pageSize = 10),
                 pagingSourceFactory = { useCase })
 
             val widthPixels = Resources.getSystem().displayMetrics.widthPixels
@@ -66,19 +66,20 @@ class FollowedStreamListViewModel @Inject constructor(
                 }
             }.cachedIn(this)
 
-            _followedStreamList.value = GetFollowedStreamListState.Success(pagerMap)
-            //TODO unhappy path?
+            pagerMap.collectLatest { pagingData ->
+                _followedStreamList.value = GetFollowedStreamListFirstPageState.Success(pagingData)
+            }
         }
     }
 }
 
 sealed class UserIntent {
-    object GetFollowedStreamList : UserIntent()
+    object GetFollowedStreamListFirstPage : UserIntent()
 }
 
-sealed class GetFollowedStreamListState {
-    object Idle : GetFollowedStreamListState()
-    object Loading : GetFollowedStreamListState()
-    data class Success(val flow: Flow<PagingData<FollowedStreamVO>>) : GetFollowedStreamListState()
-    data class Error(val error: String?) : GetFollowedStreamListState()
+sealed class GetFollowedStreamListFirstPageState {
+    object Idle : GetFollowedStreamListFirstPageState()
+    object Loading : GetFollowedStreamListFirstPageState()
+    data class Success(val pagingData: PagingData<FollowedStreamVO>) :
+        GetFollowedStreamListFirstPageState()
 }

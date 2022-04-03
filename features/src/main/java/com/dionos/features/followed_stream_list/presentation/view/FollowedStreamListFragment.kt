@@ -1,6 +1,7 @@
 package com.dionos.features.followed_stream_list.presentation.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import com.dionos.features.databinding.FragmentFollowedStreamListBinding
 import com.dionos.features.followed_stream_list.presentation.adapter.FollowedStreamListAdapter
 import com.dionos.features.followed_stream_list.presentation.viewmodel.FollowedStreamListViewModel
-import com.dionos.features.followed_stream_list.presentation.viewmodel.GetFollowedStreamListState
+import com.dionos.features.followed_stream_list.presentation.viewmodel.GetFollowedStreamListFirstPageState
 import com.dionos.features.followed_stream_list.presentation.viewmodel.UserIntent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -64,17 +65,18 @@ class FollowedStreamListFragment : Fragment() {
 
     private fun setObserver() {
         lifecycleScope.launch {
-            viewModel.userIntent.send(UserIntent.GetFollowedStreamList)
+            viewModel.userIntent.send(UserIntent.GetFollowedStreamListFirstPage)
 
             viewModel.followedStreamList.collectLatest { state ->
                 when (state) {
-                    is GetFollowedStreamListState.Error -> TODO()
-                    GetFollowedStreamListState.Idle -> {}
-                    GetFollowedStreamListState.Loading -> TODO()
-                    is GetFollowedStreamListState.Success -> {
-                        state.flow.collectLatest { pagingData ->
-                            adapter?.submitData(pagingData)
-                        }
+                    GetFollowedStreamListFirstPageState.Idle -> {
+                        Log.d("state", "Idle")
+                    }
+                    GetFollowedStreamListFirstPageState.Loading -> {
+                        Log.d("state", "Loading")
+                    }
+                    is GetFollowedStreamListFirstPageState.Success -> {
+                        adapter?.submitData(state.flow)
                     }
                 }
             }
