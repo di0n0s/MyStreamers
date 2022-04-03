@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.dionos.features.databinding.FragmentFollowedStreamListBinding
 import com.dionos.features.followed_stream_list.presentation.adapter.FollowedStreamListAdapter
+import com.dionos.features.followed_stream_list.presentation.adapter.FollowedStreamLoadStateAdapter
 import com.dionos.features.followed_stream_list.presentation.viewmodel.FollowedStreamListViewModel
 import com.dionos.features.followed_stream_list.presentation.viewmodel.GetFollowedStreamListFirstPageState
 import com.dionos.features.followed_stream_list.presentation.viewmodel.UserIntent
@@ -50,7 +51,8 @@ class FollowedStreamListFragment : Fragment() {
     private fun initAdapter() {
         adapter = FollowedStreamListAdapter()
 
-        binding?.recyclerView?.adapter = adapter//?.withLoadStateFooter(footer = )
+        binding?.recyclerView?.adapter =
+            adapter?.withLoadStateFooter(footer = FollowedStreamLoadStateAdapter { adapter?.retry() })
 
         //adapter?.addLoadStateListener {  }
     }
@@ -76,7 +78,7 @@ class FollowedStreamListFragment : Fragment() {
                         Log.d("state", "Loading")
                     }
                     is GetFollowedStreamListFirstPageState.Success -> {
-                        adapter?.submitData(state.flow)
+                        adapter?.submitData(state.pagingData)
                     }
                 }
             }

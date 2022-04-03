@@ -12,18 +12,22 @@ class GetFollowedStreamListPagedUseCase @Inject constructor(private val reposito
     private var prevKey: String? = null
 
     override suspend fun load(params: LoadParams<String>): LoadResult<String, FollowedStreamDto> {
-        val response =
-            repository.getFollowedStreamList(cursor = params.key, loadSize = params.loadSize)
+        try {
+            val response =
+                repository.getFollowedStreamList(cursor = params.key, loadSize = params.loadSize)
 
-        val result = LoadResult.Page(
-            data = response.data,
-            prevKey = prevKey,
-            nextKey = response.pagination.cursor
-        )
+            val result = LoadResult.Page(
+                data = response.data,
+                prevKey = prevKey,
+                nextKey = response.pagination.cursor
+            )
 
-        prevKey = response.pagination.cursor
+            prevKey = response.pagination.cursor
 
-        return result
+            return result
+        } catch (throwable: Throwable) {
+            return LoadResult.Error(throwable)
+        }
     }
 
     override fun getRefreshKey(state: PagingState<String, FollowedStreamDto>): String? = prevKey

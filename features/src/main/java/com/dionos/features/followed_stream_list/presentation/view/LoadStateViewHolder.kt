@@ -18,17 +18,14 @@ class LoadStateViewHolder(parent: ViewGroup, private val retry: () -> Unit) :
     private val binding = ItemLoadStateFooterBinding.bind(itemView)
 
     fun bind(loadState: LoadState) {
-        binding.retryButton.setOnClickListener { retry }
+        binding.retryButton.setOnClickListener { retry.invoke() }
 
-        when (loadState) {
-            is LoadState.Error -> {
-                binding.errorTextView.text = loadState.error.localizedMessage
-                binding.retryButton.isVisible = true
-                binding.errorTextView.isVisible = true
-            }
-            LoadState.Loading -> binding.progressBar.isVisible = true
-            is LoadState.NotLoading -> {}
+        if (loadState is LoadState.Error) {
+            binding.errorTextView.text = loadState.error.localizedMessage
         }
+        binding.progressBar.isVisible = loadState is LoadState.Loading
+        binding.retryButton.isVisible = loadState is LoadState.Error
+        binding.errorTextView.isVisible = loadState is LoadState.Error
     }
 
 
