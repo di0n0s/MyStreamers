@@ -1,7 +1,6 @@
 package com.dionos.features.followed_stream_list.presentation.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,8 +12,6 @@ import com.dionos.features.databinding.FragmentFollowedStreamListBinding
 import com.dionos.features.followed_stream_list.presentation.adapter.FollowedStreamListAdapter
 import com.dionos.features.followed_stream_list.presentation.adapter.FollowedStreamLoadStateAdapter
 import com.dionos.features.followed_stream_list.presentation.viewmodel.FollowedStreamListViewModel
-import com.dionos.features.followed_stream_list.presentation.viewmodel.GetFollowedStreamListFirstPageState
-import com.dionos.features.followed_stream_list.presentation.viewmodel.UserIntent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -67,20 +64,8 @@ class FollowedStreamListFragment : Fragment() {
 
     private fun setObserver() {
         lifecycleScope.launch {
-            viewModel.userIntent.send(UserIntent.GetFollowedStreamListFirstPage)
-
-            viewModel.followedStreamList.collectLatest { state ->
-                when (state) {
-                    GetFollowedStreamListFirstPageState.Idle -> {
-                        Log.d("state", "Idle")
-                    }
-                    GetFollowedStreamListFirstPageState.Loading -> {
-                        Log.d("state", "Loading")
-                    }
-                    is GetFollowedStreamListFirstPageState.Success -> {
-                        adapter?.submitData(state.pagingData)
-                    }
-                }
+            viewModel.pagingDataFlow.collectLatest { pagingData ->
+                adapter?.submitData(pagingData)
             }
         }
     }
