@@ -1,6 +1,6 @@
 package com.dionos.user.presentation.viewModel
 
-import com.dionos.core.data.source.UserSharedPreferencesDataSource
+import com.dionos.core.data.source.AccessTokenPreferencesDataSource
 import com.dionos.user.MainCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -20,7 +20,7 @@ class SignInViewModelTest {
     private lateinit var viewModel: SignInViewModel
 
     @Mock
-    private lateinit var sharedPreferencesDataSource: UserSharedPreferencesDataSource
+    private lateinit var sharedPreferencesDataSource: AccessTokenPreferencesDataSource
 
     @get:Rule
     var mainCoroutineRule = MainCoroutineRule()

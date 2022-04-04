@@ -2,7 +2,7 @@ package com.dionos.core.data
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.dionos.core.data.source.UserSharedPreferencesDataSource
+import com.dionos.core.data.source.AccessTokenPreferencesDataSource
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -13,9 +13,9 @@ import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class UserSharedPreferencesDataSourceTest {
+class AccessTokenPreferencesDataSourceTest {
 
-    private lateinit var sharedPreferencesDataSource: UserSharedPreferencesDataSource
+    private lateinit var sharedPreferencesDataSource: AccessTokenPreferencesDataSource
 
     @Mock
     private lateinit var context: Context
@@ -30,12 +30,12 @@ class UserSharedPreferencesDataSourceTest {
     fun setUp() {
         `when`(
             context.getSharedPreferences(
-                UserSharedPreferencesDataSource::class.java.name,
+                AccessTokenPreferencesDataSource::class.java.name,
                 Context.MODE_PRIVATE
             )
         ).thenReturn(sharedPreferences)
 
-        sharedPreferencesDataSource = UserSharedPreferencesDataSource(context)
+        sharedPreferencesDataSource = AccessTokenPreferencesDataSource(context)
     }
 
     @Test

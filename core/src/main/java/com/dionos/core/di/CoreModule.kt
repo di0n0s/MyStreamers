@@ -1,7 +1,7 @@
 package com.dionos.core.di
 
 import com.dionos.core.BuildConfig
-import com.dionos.core.data.source.UserSharedPreferencesDataSource
+import com.dionos.core.data.source.AccessTokenPreferencesDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +18,7 @@ object CoreModule {
 
     @Provides
     fun provideRetrofitBuilder(
-        sharedPreferencesDataSource: UserSharedPreferencesDataSource,
+        sharedPreferencesDataSource: AccessTokenPreferencesDataSource,
     ): Retrofit.Builder {
         val builder = OkHttpClient.Builder().apply {
             readTimeout(60, TimeUnit.SECONDS)

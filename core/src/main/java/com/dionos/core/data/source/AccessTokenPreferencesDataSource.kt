@@ -4,7 +4,7 @@ import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class UserSharedPreferencesDataSource @Inject constructor(@ApplicationContext private val context: Context) {
+class AccessTokenPreferencesDataSource @Inject constructor(@ApplicationContext private val context: Context) {
 
     private val preferences =
         context.getSharedPreferences(this.javaClass.name, Context.MODE_PRIVATE)

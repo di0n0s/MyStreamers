@@ -2,7 +2,7 @@ package com.dionos.user.presentation.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dionos.core.data.source.UserSharedPreferencesDataSource
+import com.dionos.core.data.source.AccessTokenPreferencesDataSource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SignInViewModel @Inject constructor(private val sharedPreferencesDataSource: UserSharedPreferencesDataSource) :
+class SignInViewModel @Inject constructor(private val sharedPreferencesDataSource: AccessTokenPreferencesDataSource) :
     ViewModel() {
 
     val userIntent = Channel<UserIntent>(Channel.UNLIMITED)
