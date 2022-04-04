@@ -18,7 +18,6 @@ class FollowedStreamViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     private val binding = ItemFollowedStreamBinding.bind(itemView)
 
     fun bind(followedStreamVO: FollowedStreamVO?) {
-
         with(binding) {
             Glide.with(itemView)
                 .load(followedStreamVO?.imagePath)
@@ -29,6 +28,5 @@ class FollowedStreamViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
             channelNameTextView.text = followedStreamVO?.userName
             categoryNameTextView.text = followedStreamVO?.category
         }
-
     }
 }

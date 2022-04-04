@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="load_state_footer_retry">Retry</string>
+    <string name="common_retry">Retry</string>
+    <string name="followed_stream_list_empty_list">No streams found. Try again later.</string>
 </resources>

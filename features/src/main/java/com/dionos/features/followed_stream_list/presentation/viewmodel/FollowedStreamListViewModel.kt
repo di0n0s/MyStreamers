@@ -17,7 +17,7 @@ class FollowedStreamListViewModel @Inject constructor(
     private val useCase: GetFollowedStreamListPagedUseCase
 ) : ViewModel() {
 
-    val pagingDataFlow by lazy { return@lazy getFollowedStreamListFlow() }
+    val pagingDataFlow: Flow<PagingData<FollowedStreamVO>> by lazy { return@lazy getFollowedStreamListFlow() }
 
     private fun getFollowedStreamListFlow(): Flow<PagingData<FollowedStreamVO>> {
         val pager = Pager(

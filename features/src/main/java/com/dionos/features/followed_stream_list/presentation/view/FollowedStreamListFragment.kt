@@ -5,9 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.CombinedLoadStates
+import androidx.paging.LoadState
 import com.dionos.features.databinding.FragmentFollowedStreamListBinding
 import com.dionos.features.followed_stream_list.presentation.adapter.FollowedStreamListAdapter
 import com.dionos.features.followed_stream_list.presentation.adapter.FollowedStreamLoadStateAdapter
@@ -51,7 +54,26 @@ class FollowedStreamListFragment : Fragment() {
         binding?.recyclerView?.adapter =
             adapter?.withLoadStateFooter(footer = FollowedStreamLoadStateAdapter { adapter?.retry() })
 
-        //adapter?.addLoadStateListener {  }
+        adapter?.addLoadStateListener { loadState -> manageUiVisibility(loadState) }
+
+        binding?.retryButton?.setOnClickListener { adapter?.retry() }
+    }
+
+    private fun manageUiVisibility(loadState: CombinedLoadStates) {
+        val isListEmpty = loadState.refresh is LoadState.NotLoading && adapter?.itemCount == 0
+
+        binding?.let {
+            it.emptyTextView.isVisible = isListEmpty
+
+            // Only shows the list if refresh succeeds or list not empty
+            it.recyclerView.isVisible =
+                loadState.source.refresh is LoadState.NotLoading || !isListEmpty
+            // Show loading during initial load or refresh.
+            it.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
+            // Show the retry state if initial load or refresh fails.
+            it.retryButton.isVisible = loadState.source.refresh is LoadState.Error
+        }
+
     }
 
 
@@ -72,6 +94,7 @@ class FollowedStreamListFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        adapter = null
         _binding = null
     }
 }
