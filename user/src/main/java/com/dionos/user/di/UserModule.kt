@@ -16,14 +16,16 @@ import javax.inject.Named
 @InstallIn(ViewModelComponent::class)
 abstract class UserModule {
 
-    @Provides
-    fun provideUserApiService(
-        retrofitBuilder: Retrofit.Builder,
-    ): UserApiService {
+    companion object {
+        @Provides
+        fun provideUserApiService(
+            retrofitBuilder: Retrofit.Builder,
+        ): UserApiService {
 
-        return retrofitBuilder
-            .build()
-            .create(UserApiService::class.java)
+            return retrofitBuilder
+                .build()
+                .create(UserApiService::class.java)
+        }
     }
 
     @Binds

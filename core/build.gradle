@@ -51,6 +51,10 @@ dependencies {
         exclude group: 'androidx.transition', module: 'transition'
     }
 
+    //Coroutines
+    implementation(Libraries.coroutinesAndroid)
+    testImplementation(Libraries.coroutinesTest)
+
     //Retrofit
     implementation(Libraries.retrofit)
     implementation(Libraries.okhttp3)
