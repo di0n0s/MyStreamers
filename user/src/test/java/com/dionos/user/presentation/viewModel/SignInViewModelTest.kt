@@ -11,6 +11,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
 @ExperimentalCoroutinesApi
@@ -41,5 +42,7 @@ class SignInViewModelTest {
         viewModel.userIntent.send(UserIntent.SaveToken(token))
 
         assertEquals(viewModel.isTokenSaved.value, IsTokenSavedState.Success)
+
+        verify(sharedPreferencesDataSource).setAccessToken(token)
     }
 }
