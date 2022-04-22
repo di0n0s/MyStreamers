@@ -29,6 +29,7 @@ dependencies {
     //Visibility
     implementation(project(":core"))
     implementation(project(":user"))
+    testImplementation(project(":test-utils"))
 
     //Kotlin
     implementation(Libraries.kotlinStdLib)

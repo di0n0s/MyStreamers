@@ -1,6 +1,6 @@
 package com.dionos.user.data.source
 
-import com.dionos.user.MainCoroutineRule
+import com.dionos.test_utils.MainCoroutineRule
 import com.dionos.user.data.response.UserResponse
 import com.dionos.user.data.response.dto.UserDto
 import com.dionos.user.data.service.UserApiService
@@ -40,14 +40,13 @@ class UserNetworkDataSourceTest {
     @get:Rule
     var mainCoroutineRule = MainCoroutineRule()
 
-
     @Before
     fun setUp() {
         dataSource = UserNetworkDataSource(ioDispatcher = ioDispatcher, apiService = apiService)
     }
 
     @Test
-    fun `when dataSource call getUserId function then return userId`() = runBlockingTest {
+    fun `WHEN dataSource getUserId function is called THEN return userId`() = runBlockingTest {
         //GIVEN
         val userId = "userId"
         `when`(apiService.getUser()).thenReturn(userResponse)

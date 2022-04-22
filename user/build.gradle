@@ -36,6 +36,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //Visibility
     implementation project(':core')
+    testImplementation project(":test-utils")
 
     //Kotlin
     implementation(Libraries.kotlinStdLib)

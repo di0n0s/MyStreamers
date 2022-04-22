@@ -2,7 +2,7 @@ package com.dionos.user.data.source
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.dionos.user.MainCoroutineRule
+import com.dionos.test_utils.MainCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
@@ -20,7 +20,7 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class UserSharedPreferencesDataSourceTest {
 
-    private lateinit var sharedPreferencesDataSource: UserSharedPreferencesDataSource
+    private lateinit var dataSource: UserSharedPreferencesDataSource
 
     private val mainDispatcher = TestCoroutineDispatcher()
 
@@ -45,7 +45,7 @@ class UserSharedPreferencesDataSourceTest {
             )
         ).thenReturn(sharedPreferences)
 
-        sharedPreferencesDataSource =
+        dataSource =
             UserSharedPreferencesDataSource(context = context, mainDispatcher = mainDispatcher)
 
         verify(context).getSharedPreferences(
@@ -55,28 +55,33 @@ class UserSharedPreferencesDataSourceTest {
     }
 
     @Test
-    fun `when dataSource setUserId function is called then save userId in sharedPreferences`() =
+    fun `GIVEN an userID WHEN dataSource call setUserId function THEN save userId in sharedPreferences`() =
         runBlockingTest {
+            //GIVEN
             val userId = "userId"
-
             `when`(sharedPreferences.edit()).thenReturn(editor)
 
-            sharedPreferencesDataSource.setUserId(userId)
+            //WHEN
+            dataSource.setUserId(userId)
 
+            //THEN
             verify(sharedPreferences).edit()
             verify(editor).putString("USER_ID_KEY", userId)
             verify(editor).apply()
         }
 
     @Test
-    fun `when dataSource getUser function is called then return userId from sharedPreferences`() =
+    fun `WHEN dataSource getUser function is called THEN return userId from sharedPreferences`() =
         runBlockingTest {
+            //GIVEN
             val userId = "userId"
-
             `when`(sharedPreferences.getString("USER_ID_KEY", null)).thenReturn(userId)
 
-            assertEquals(userId, sharedPreferencesDataSource.getUserId())
+            //WHEN
+            val result = dataSource.getUserId()
 
+            //THEN
+            assertEquals(userId, result)
             verify(sharedPreferences).getString("USER_ID_KEY", null)
         }
 
