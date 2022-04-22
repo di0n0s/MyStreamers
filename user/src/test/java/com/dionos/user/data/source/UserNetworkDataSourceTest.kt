@@ -47,20 +47,19 @@ class UserNetworkDataSourceTest {
     }
 
     @Test
-    fun `when apiService getUserId expect userId`() = runBlockingTest {
+    fun `when dataSource call getUserId function then return userId`() = runBlockingTest {
         //GIVEN
-
-
-        //WHEN
         val userId = "userId"
         `when`(apiService.getUser()).thenReturn(userResponse)
         `when`(userResponse.data).thenReturn(userList)
         `when`(userList[0]).thenReturn(userDto)
         `when`(userDto.id).thenReturn(userId)
 
-        //THEN
-        assertEquals(userId, dataSource.getUserId())
+        //WHEN
+        val result = dataSource.getUserId()
 
+        //THEN
+        assertEquals(userId, result)
         verify(apiService).getUser()
         verify(userResponse).data
         verify(userList)[0]
