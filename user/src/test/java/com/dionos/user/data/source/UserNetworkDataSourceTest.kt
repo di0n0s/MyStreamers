@@ -7,6 +7,7 @@ import com.dionos.user.data.service.UserApiService
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -47,18 +48,27 @@ class UserNetworkDataSourceTest {
 
     @Test
     fun `when apiService getUserId expect userId`() = runBlockingTest {
+        //GIVEN
+
+
+        //WHEN
         val userId = "userId"
         `when`(apiService.getUser()).thenReturn(userResponse)
         `when`(userResponse.data).thenReturn(userList)
         `when`(userList[0]).thenReturn(userDto)
         `when`(userDto.id).thenReturn(userId)
 
+        //THEN
         assertEquals(userId, dataSource.getUserId())
 
         verify(apiService).getUser()
         verify(userResponse).data
         verify(userList)[0]
         verify(userDto).id
+    }
+
+    @After
+    fun verifyNoMoreInteractions() {
         verifyNoMoreInteractions(apiService, userResponse, userList, userDto)
     }
 
