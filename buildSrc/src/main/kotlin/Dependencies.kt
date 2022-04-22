@@ -27,7 +27,7 @@ object AndroidSdk {
     const val min = 21
     const val compile = 31
     const val target = compile
-    const val buildToolsVersion = "30.0.2"
+    const val buildToolsVersion = "30.0.3"
 }
 
 object Libraries {
