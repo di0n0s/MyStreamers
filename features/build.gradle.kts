@@ -16,6 +16,12 @@ android {
         viewBinding = true
     }
 
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+        unitTests.isIncludeAndroidResources = true
+
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -81,6 +87,10 @@ dependencies {
 
     //JUnit
     testImplementation(Libraries.jUnit)
+
+    //Robolectric
+    testImplementation(Libraries.robolectric)
+    testImplementation(Libraries.testCoreKtx)
 
     //Mockito
     testImplementation(Libraries.mockito)

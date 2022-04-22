@@ -7,6 +7,6 @@ data class FollowedStreamDto(
     @SerializedName("title") val title: String,
     @SerializedName("user_name") val userName: String,
     @SerializedName("game_name") val gameName: String,
-    @SerializedName("viewer_count") val viewerCount: String,
+    @SerializedName("viewer_count") val viewerCount: Int,
     @SerializedName("thumbnail_url") val thumbnailUrl: String,
 )

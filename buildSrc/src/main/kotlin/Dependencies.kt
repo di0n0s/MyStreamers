@@ -154,10 +154,14 @@ object Libraries {
     //Mockito
     const val mockito = "org.mockito:mockito-core:${Versions.mockito}"
 
+    //Robolectric
+    const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
+    const val testCoreKtx = "androidx.test:core-ktx:${Versions.androidXTest}"
+
+
     //UI Testing
     const val testRunner = "androidx.test:runner:${Versions.androidXTest}"
     const val testRules = "androidx.test:rules:${Versions.androidXTest}"
-    const val testCore = "androidx.test:core:${Versions.androidXTest}"
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
     const val webViewEspresso = "androidx.test.espresso:espresso-web:${Versions.espresso}"
     const val jUnitAndroid = "androidx.test.ext:junit:${Versions.jUnitAndroid}"

@@ -1,7 +1,7 @@
 package com.dionos.features.followed_stream_list.presentation.viewmodel
 
-import android.content.res.Resources
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
 import com.dionos.features.followed_stream_list.domain.GetFollowedStreamListPagedUseCase
@@ -14,8 +14,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FollowedStreamListViewModel @Inject constructor(
-    private val useCase: GetFollowedStreamListPagedUseCase
-) : ViewModel() {
+    private val useCase: GetFollowedStreamListPagedUseCase,
+    application: Application
+) : AndroidViewModel(application) {
 
     val pagingDataFlow: Flow<PagingData<FollowedStreamVO>> by lazy { return@lazy getFollowedStreamListFlow() }
 
@@ -24,21 +25,9 @@ class FollowedStreamListViewModel @Inject constructor(
             config = PagingConfig(pageSize = 10),
             pagingSourceFactory = { useCase })
 
-        val widthPixels = Resources.getSystem().displayMetrics.widthPixels
-
-        val heightPixels = (widthPixels / 16) * 10
-
         return pager.flow.map { pagingData ->
             pagingData.map { followedStreamDto ->
-                //TODO extract this in another class
-                FollowedStreamVO(
-                    id = followedStreamDto.id,
-                    imagePath = """${followedStreamDto.thumbnailUrl.substringBeforeLast("-")}-${widthPixels}x$heightPixels.jpg""",
-                    userName = followedStreamDto.userName,
-                    category = followedStreamDto.gameName,
-                    title = followedStreamDto.title,
-                    viewers = followedStreamDto.viewerCount
-                )
+                FollowedStreamVO.fromFollowedStreamDto(getApplication(), followedStreamDto)
             }
         }.cachedIn(viewModelScope)
     }
