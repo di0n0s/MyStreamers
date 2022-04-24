@@ -8,8 +8,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.inOrder
+import org.mockito.Mockito.*
 import org.mockito.junit.MockitoJUnitRunner
 
 @ExperimentalCoroutinesApi
@@ -33,33 +32,43 @@ class UserRepositoryTest {
     }
 
     @Test
-    fun `when sharedPreferences getUserId expect return userId`() =
+    fun `GIVEN sharedPreferences return userId WHEN getUserId is called THEN sharedPreferences return userId`() =
         runBlockingTest {
+            //GIVEN
             val userId = "userId"
             `when`(userSharedPreferencesDataSource.getUserId()).thenReturn(userId)
 
-            assertEquals(userId, repository.getUserId())
+            //WHEN
+            val result = repository.getUserId()
 
-            val inOrder = inOrder(userSharedPreferencesDataSource, userNetworkDataSource)
+            //THEN
+            assertEquals(userId, result)
 
-            inOrder.verify(userSharedPreferencesDataSource).getUserId()
-            inOrder.verifyNoMoreInteractions()
+            verify(userSharedPreferencesDataSource).getUserId()
         }
 
     @Test
-    fun `when sharedPreferences getUserId return null expect network return it and save it in sharedPreferences`() =
+    fun `GIVEN sharedPreferences no return userId WHEN getUserId is called THEN api return userId`() =
         runBlockingTest {
+            //GIVEN
             val userId = "userId"
             `when`(userSharedPreferencesDataSource.getUserId()).thenReturn(null)
             `when`(userNetworkDataSource.getUserId()).thenReturn(userId)
 
-            assertEquals(userId, repository.getUserId())
+            //WHEN
+            val result = repository.getUserId()
+
+            //THEN
+            assertEquals(userId, result)
 
             val inOrder = inOrder(userSharedPreferencesDataSource, userNetworkDataSource)
-
             inOrder.verify(userSharedPreferencesDataSource).getUserId()
             inOrder.verify(userNetworkDataSource).getUserId()
             inOrder.verify(userSharedPreferencesDataSource).setUserId(userId)
-            inOrder.verifyNoMoreInteractions()
         }
+
+    @Test
+    fun tearDown() {
+        verifyNoMoreInteractions(userSharedPreferencesDataSource, userNetworkDataSource)
+    }
 }
