@@ -76,7 +76,7 @@ class FeaturesNetworkDataSourceTest {
         }
 
     @After
-    fun verifyNoMoreInteractions() {
+    fun tearDown() {
         verifyNoMoreInteractions(apiService, response)
     }
 }

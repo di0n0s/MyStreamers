@@ -49,7 +49,7 @@ class SignInViewModelTest {
         }
 
     @After
-    fun verifyNoMoreInteractions() {
+    fun tearDown() {
         verifyNoMoreInteractions(sharedPreferencesDataSource)
     }
 }

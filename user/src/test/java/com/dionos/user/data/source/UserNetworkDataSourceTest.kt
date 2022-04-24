@@ -66,7 +66,7 @@ class UserNetworkDataSourceTest {
     }
 
     @After
-    fun verifyNoMoreInteractions() {
+    fun tearDown() {
         verifyNoMoreInteractions(apiService, userResponse, userList, userDto)
     }
 

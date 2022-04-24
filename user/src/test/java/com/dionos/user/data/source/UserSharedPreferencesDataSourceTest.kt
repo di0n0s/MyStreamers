@@ -86,7 +86,7 @@ class UserSharedPreferencesDataSourceTest {
         }
 
     @After
-    fun verifyNoMoreInteractions() {
+    fun tearDown() {
         verifyNoMoreInteractions(context, sharedPreferences, editor)
     }
 }
