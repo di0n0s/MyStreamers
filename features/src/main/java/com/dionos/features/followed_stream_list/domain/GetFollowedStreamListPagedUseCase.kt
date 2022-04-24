@@ -25,13 +25,15 @@ class GetFollowedStreamListPagedUseCase @Inject constructor(
                     userId = userId
                 )
 
+            val cursor = response.pagination.cursor
+
             val result = LoadResult.Page(
                 data = response.data,
                 prevKey = prevKey,
-                nextKey = response.pagination.cursor
+                nextKey = cursor
             )
 
-            prevKey = response.pagination.cursor
+            prevKey = cursor
 
             return result
         } catch (throwable: Throwable) {
