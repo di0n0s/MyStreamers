@@ -1,18 +1,19 @@
 package com.dionos.user.presentation.viewModel
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dionos.user.data.UserSharedPreferencesDataSource
+import com.dionos.core.data.source.AccessTokenPreferencesDataSource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-
-class SignInViewModel @ViewModelInject constructor(private val sharedPreferencesDataSource: UserSharedPreferencesDataSource) :
+@HiltViewModel
+class SignInViewModel @Inject constructor(private val sharedPreferencesDataSource: AccessTokenPreferencesDataSource) :
     ViewModel() {
 
     val userIntent = Channel<UserIntent>(Channel.UNLIMITED)
@@ -36,6 +37,9 @@ class SignInViewModel @ViewModelInject constructor(private val sharedPreferences
     }
 
     private fun saveToken(token: String) {
+        //This state is not triggering because we are in main thread and state flow only change with the last status
+        _isTokenSaved.value = IsTokenSavedState.Loading
+
         if (sharedPreferencesDataSource.setAccessToken(token)) {
             _isTokenSaved.value = IsTokenSavedState.Success
         }
@@ -49,5 +53,6 @@ sealed class UserIntent {
 
 sealed class IsTokenSavedState {
     object Idle : IsTokenSavedState()
+    object Loading : IsTokenSavedState()
     object Success : IsTokenSavedState()
 }

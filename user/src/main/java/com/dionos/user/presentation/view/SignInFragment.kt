@@ -1,7 +1,6 @@
 package com.dionos.user.presentation.view
 
 import android.annotation.SuppressLint
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,11 +9,16 @@ import android.view.ViewGroup
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDeepLinkRequest
+import androidx.navigation.fragment.findNavController
 import com.dionos.user.BuildConfig
+import com.dionos.user.R
 import com.dionos.user.databinding.FragmentSignInBinding
 import com.dionos.user.presentation.viewModel.IsTokenSavedState
 import com.dionos.user.presentation.viewModel.SignInViewModel
@@ -32,6 +36,7 @@ class SignInFragment : Fragment() {
     private val binding get() = _binding
 
     private var webView: WebView? = null
+    private var progressBar: ProgressBar? = null
 
     //Variables
     private var state: String = UUID.randomUUID().toString()
@@ -53,7 +58,11 @@ class SignInFragment : Fragment() {
 
     private fun onInitView(inflater: LayoutInflater, container: ViewGroup?) {
         _binding = FragmentSignInBinding.inflate(inflater, container, false)
-        webView = binding?.webView
+        binding?.let {
+            webView = it.webView
+            progressBar = it.progressBar
+        }
+
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -76,6 +85,7 @@ class SignInFragment : Fragment() {
                 }
             }
 
+            //TODO extract url on gradle and split between buildtypes
             this.loadUrl(
                 "https://id.twitch.tv/oauth2/authorize" +
                         "?client_id=f368puphbblwvu2sx5l1ufqfo5izet" +
@@ -93,7 +103,7 @@ class SignInFragment : Fragment() {
     private fun setToolbar() {
         (activity as AppCompatActivity?)?.apply {
             setSupportActionBar(binding?.toolbar)
-            supportActionBar?.title = "Sign In"
+            supportActionBar?.title = getString(R.string.sign_in_sign_in)
         }
     }
 
@@ -112,7 +122,7 @@ class SignInFragment : Fragment() {
                 val accessToken = map["access_token"]
                 if (accessToken?.isNotBlank() == true) {
                     lifecycleScope.launch {
-                        viewModel.userIntent.send(UserIntent.SaveToken(accessToken))
+                        viewModel.userIntent.send(UserIntent.SaveToken("Bearer $accessToken"))
                     }
                 } else {
                     Log.i("login", "token empty")
@@ -121,7 +131,7 @@ class SignInFragment : Fragment() {
                 Log.i("login", "state wrong")
             }
         } else if (url == "") {
-
+            //TODO manage this
         } else {
             webView?.loadUrl(request?.url.toString())
         }
@@ -131,7 +141,13 @@ class SignInFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.isTokenSaved.collect {
                 if (it is IsTokenSavedState.Success) {
-                    //TODO go to next screen
+                    val request = NavDeepLinkRequest.Builder
+                        .fromUri(getString(R.string.followed_stream_list_fragment_uri).toUri())
+                        .build()
+                    findNavController().navigate(request)
+                } else if (it is IsTokenSavedState.Loading) {
+                    webView?.visibility = View.GONE
+                    progressBar?.visibility = View.VISIBLE
                 }
             }
         }

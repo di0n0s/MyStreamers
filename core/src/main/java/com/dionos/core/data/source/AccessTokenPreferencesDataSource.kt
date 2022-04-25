@@ -1,0 +1,24 @@
+package com.dionos.core.data.source
+
+import android.content.Context
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
+
+class AccessTokenPreferencesDataSource @Inject constructor(@ApplicationContext private val context: Context) {
+
+    private val preferences =
+        context.getSharedPreferences(this.javaClass.name, Context.MODE_PRIVATE)
+
+    companion object {
+        private const val ACCESS_TOKEN_KEY = "ACCESS_TOKEN_KEY"
+    }
+
+    fun getAccessToken(): String? = preferences.getString(ACCESS_TOKEN_KEY, null)
+
+    fun setAccessToken(token: String): Boolean {
+        with(preferences.edit()) {
+            putString(ACCESS_TOKEN_KEY, token)
+            return commit()
+        }
+    }
+}

@@ -1,3 +1,5 @@
 include ':core'
 include ':app'
 include ':user'
+include ':features'
+include ':test-utils'

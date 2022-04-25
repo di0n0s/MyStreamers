@@ -1,6 +1,7 @@
 apply plugin: (Plugins.androidLibrary)
 apply plugin: (Plugins.kotlinAndroid)
 apply plugin: (Plugins.kotlinKapt)
+apply plugin: (Plugins.hilt)
 
 android {
     compileSdkVersion(AndroidSdk.compile)
@@ -50,11 +51,26 @@ dependencies {
         exclude group: 'androidx.transition', module: 'transition'
     }
 
+    //Coroutines
+    implementation(Libraries.coroutinesAndroid)
+    testImplementation(Libraries.coroutinesTest)
+
+    //Retrofit
+    implementation(Libraries.retrofit)
+    implementation(Libraries.okhttp3)
+    implementation(Libraries.loginInterceptor)
+
+    //Gson
+    implementation(Libraries.gson)
+    implementation(Libraries.gsonConverter)
+
     //Hilt
     implementation(Libraries.hilt)
     kapt(Libraries.hiltAndroidCompiler)
 
-    //UI Test
-    debugImplementation(Libraries.fragmentTesting)
+    //JUnit
+    testImplementation(Libraries.jUnit)
 
+    //Mockito
+    testImplementation(Libraries.mockito)
 }

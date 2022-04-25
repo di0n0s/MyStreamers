@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="followed_stream_list_fragment_uri">android-app://com.dionos.features/followed_stream_list_fragment</string>
+</resources>

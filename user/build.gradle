@@ -36,6 +36,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //Visibility
     implementation project(':core')
+    testImplementation project(":test-utils")
 
     //Kotlin
     implementation(Libraries.kotlinStdLib)
@@ -58,6 +59,9 @@ dependencies {
         exclude group: 'androidx.transition', module: 'transition'
     }
 
+    //Navigation
+    implementation(Libraries.navigationFragment)
+    implementation(Libraries.navigationCommonKtx)
 
     //Hilt
     implementation(Libraries.hilt)
@@ -66,9 +70,14 @@ dependencies {
     //ViewModel
     implementation(Libraries.viewModel)
 
-    //Hilt with ViewModel
-    implementation(Libraries.hiltLifecycleViewModel)
-    kapt(Libraries.hiltCompiler)
+    //Retrofit
+    implementation(Libraries.retrofit)
+    implementation(Libraries.okhttp3)
+    implementation(Libraries.loginInterceptor)
+
+    //Gson
+    implementation(Libraries.gson)
+    implementation(Libraries.gsonConverter)
 
     //Coroutines
     implementation(Libraries.coroutinesAndroid)

@@ -34,6 +34,7 @@ dependencies {
     //Visibility
     implementation project(':core')
     implementation project(':user')
+    implementation project(':features')
 
     //Kotlin
     implementation(Libraries.kotlinStdLib)
@@ -60,10 +61,6 @@ dependencies {
     //Hilt
     implementation(Libraries.hilt)
     kapt(Libraries.hiltAndroidCompiler)
-
-    //Hilt with ViewModel
-    implementation(Libraries.hiltLifecycleViewModel)
-    kapt(Libraries.hiltCompiler)
 
     //Navigation
     implementation(Libraries.navigationFragment)

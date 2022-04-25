@@ -1,11 +1,11 @@
-const val kotlinVersion = "1.6.0"
+const val kotlinVersion = "1.6.10"
 
 
 object Build {
     object Versions {
-        const val buildToolsVersion = "7.0.4"
+        const val buildToolsVersion = "7.1.2"
         const val googleServicesVersion = "4.2.0"
-        const val googleHilt = "2.28-alpha"
+        const val googleHilt = "2.41"
     }
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.buildToolsVersion}"
@@ -27,7 +27,7 @@ object AndroidSdk {
     const val min = 21
     const val compile = 31
     const val target = compile
-    const val buildToolsVersion = "30.0.2"
+    const val buildToolsVersion = "30.0.3"
 }
 
 object Libraries {
@@ -43,14 +43,26 @@ object Libraries {
         //Material
         const val material = "1.6.0-alpha01"
 
+        //Glide
+        const val glide = "4.13.0"
+
+        //Retrofit
+        const val retrofit = "2.9.0"
+
+        //Okhttp3
+        const val okhttp3 = "4.9.3"
+
+        //Gson
+        const val gson = "2.9.0"
+
+        //Paging
+        const val paging = "3.1.1"
+
         //Navigation
         const val navigation = "2.3.5"
 
         //Lifecycle
         const val lifecycle = "2.4.0"
-
-        //AndroidX Hilt
-        const val androidXHilt = "1.0.0-alpha01"
 
         //Coroutines
         const val coroutines = "1.5.2"
@@ -93,6 +105,24 @@ object Libraries {
     //Material
     const val material = "com.google.android.material:material:${Versions.material}"
 
+    //Glide
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
+    const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
+
+    //Retrofit
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+
+    //Okhttp3
+    const val okhttp3 = "com.squareup.okhttp3:okhttp:${Versions.okhttp3}"
+    const val loginInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp3}"
+
+    //Gson
+    const val gson = "com.google.code.gson:gson:${Versions.gson}"
+    const val gsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.gson}"
+
+    //Paging
+    const val paging = "androidx.paging:paging-runtime:${Versions.paging}"
+
     //Hilt
     const val hilt = "com.google.dagger:hilt-android:${Build.Versions.googleHilt}"
     const val hiltAndroidCompiler =
@@ -105,14 +135,11 @@ object Libraries {
         "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
     const val navigationTesting = "androidx.navigation:navigation-testing:${Versions.navigation}"
+    const val navigationCommonKtx =
+        "androidx.navigation:navigation-common-ktx:${Versions.navigation}"
 
     //ViewModel
     const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
-
-    //ViewModel with Hilt
-    const val hiltLifecycleViewModel =
-        "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.androidXHilt}"
-    const val hiltCompiler = "androidx.hilt:hilt-compiler:${Versions.androidXHilt}"
 
     //Coroutines
     const val coroutinesAndroid =
@@ -127,10 +154,14 @@ object Libraries {
     //Mockito
     const val mockito = "org.mockito:mockito-core:${Versions.mockito}"
 
+    //Robolectric
+    const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
+    const val testCoreKtx = "androidx.test:core-ktx:${Versions.androidXTest}"
+
+
     //UI Testing
     const val testRunner = "androidx.test:runner:${Versions.androidXTest}"
     const val testRules = "androidx.test:rules:${Versions.androidXTest}"
-    const val testCore = "androidx.test:core:${Versions.androidXTest}"
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
     const val webViewEspresso = "androidx.test.espresso:espresso-web:${Versions.espresso}"
     const val jUnitAndroid = "androidx.test.ext:junit:${Versions.jUnitAndroid}"
