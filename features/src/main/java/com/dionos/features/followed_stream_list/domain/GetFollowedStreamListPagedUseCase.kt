@@ -3,13 +3,14 @@ package com.dionos.features.followed_stream_list.domain
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.dionos.features.followed_stream_list.data.response.dto.FollowedStreamDto
-import com.dionos.features.followed_stream_list.data.source.FeaturesNetworkDataSource
+import com.dionos.features.followed_stream_list.data.source.FeaturesDataSource
 import com.dionos.user.data.repository.UserRepository
 import javax.inject.Inject
+import javax.inject.Named
 
 class GetFollowedStreamListPagedUseCase @Inject constructor(
     private val userRepository: UserRepository,
-    private val featuresNetworkDataSource: FeaturesNetworkDataSource
+    @Named("FeaturesNetworkDataSource") private val featuresNetworkDataSource: FeaturesDataSource
 ) : PagingSource<String, FollowedStreamDto>() {
 
     private var prevKey: String? = null

@@ -1,12 +1,9 @@
 package com.dionos.mystreamers.presentation.view
 
-import android.view.View
 import androidx.navigation.Navigation
 import androidx.navigation.testing.TestNavHostController
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.UiController
-import androidx.test.espresso.ViewAction
 import androidx.test.espresso.matcher.ViewMatchers.isRoot
 import androidx.test.espresso.web.model.SimpleAtom
 import androidx.test.espresso.web.sugar.Web.onWebView
@@ -14,10 +11,10 @@ import androidx.test.espresso.web.webdriver.DriverAtoms.*
 import androidx.test.espresso.web.webdriver.Locator
 import com.dionos.mystreamers.R
 import com.dionos.mystreamers.launchFragmentInHiltContainer
+import com.dionos.mystreamers.presentation.view.util.EspressoUtils.waitFor
 import com.dionos.user.presentation.view.SignInFragment
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import org.hamcrest.Matcher
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -82,15 +79,5 @@ class SignInFragmentTest {
 
 //        onView(withId(R.id.recycler_view)).check(matches(isDisplayed()))
 
-    }
-
-    fun waitFor(delay: Long): ViewAction {
-        return object : ViewAction {
-            override fun getConstraints(): Matcher<View> = isRoot()
-            override fun getDescription(): String = "wait for $delay milliseconds"
-            override fun perform(uiController: UiController, v: View?) {
-                uiController.loopMainThreadForAtLeast(delay)
-            }
-        }
     }
 }

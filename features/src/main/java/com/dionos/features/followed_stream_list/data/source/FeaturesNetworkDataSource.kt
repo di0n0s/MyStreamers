@@ -10,9 +10,9 @@ import javax.inject.Inject
 class FeaturesNetworkDataSource @Inject constructor(
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
     private val apiService: TwitchApiService
-) {
+) : FeaturesDataSource {
 
-    suspend fun getFollowedStreamList(
+    override suspend fun getFollowedStreamList(
         userId: String,
         cursor: String?,
         loadSize: Int
