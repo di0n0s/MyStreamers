@@ -37,6 +37,9 @@ class SignInViewModel @Inject constructor(private val sharedPreferencesDataSourc
     }
 
     private fun saveToken(token: String) {
+        //This state is not triggering because we are in main thread and state flow only change with the last status
+        _isTokenSaved.value = IsTokenSavedState.Loading
+
         if (sharedPreferencesDataSource.setAccessToken(token)) {
             _isTokenSaved.value = IsTokenSavedState.Success
         }
@@ -50,5 +53,6 @@ sealed class UserIntent {
 
 sealed class IsTokenSavedState {
     object Idle : IsTokenSavedState()
+    object Loading : IsTokenSavedState()
     object Success : IsTokenSavedState()
 }
